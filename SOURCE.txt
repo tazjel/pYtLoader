@@ -1,0 +1,20 @@
+YouTubeDownloader-vX.Y.py:
+	Orginal Sourcecode für Windows und Linux (und Linux ähnlichem).
+	
+	Um das Programm vollständig zu nutzen müssen 
+	folgende Pakete und python installiert sein:
+	wxpython lame faad2 
+	
+	Die heruntergeladenen/convertierten Videos befinden sich dann
+	in ~/YouTube/
+	
+
+	Um den Sourcecode unter Windows zu nutzen muss man den "data"
+	Ordner aus dem Windows Download des YouTubeDownloaders
+	in den selben Ordner wie den Sourcecode kopieren.
+	(http://v93.eu/?pid=10)
+
+	
+	Weitere Details siehe Liesmich.txt
+
+
