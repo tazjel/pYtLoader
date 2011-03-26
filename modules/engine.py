@@ -129,7 +129,7 @@ class Youtube(threading.Thread):
 				fmt_map_all_sub = []
 				fmt_map_all_sub.append(int(lol.split('|')[0]))
 				fmt_map_all_sub.append(fmt_map_resolution[i])
-				fmt_map_all_sub.append((lol.split('|')[1]).replace("\/", "/"))
+				fmt_map_all_sub.append((lol.split('|')[1]).replace("\/", "/").replace("\u0026","&"))
 				
 				fmt_map_all.append(fmt_map_all_sub)
 				i = i +1
