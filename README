@@ -1,45 +1,45 @@
 LIESMICH DATEI v0.1.1
-für YouTubeDownloader v2.0-v2.4
+fÃ¼r YouTubeDownloader v2.0-v2.4
 Bitte Lesen:
 ====v93.eu====
 
-Der YouTubeDownloader enthält Dateien (lame, wget, faad) die unter der 
+Der YouTubeDownloader enthÃ¤lt Dateien (lame, wget, faad) die unter der 
 GNU General Public License stehen.
 http://www.gnu.org/licenses/gpl.txt
 
 ====v93.eu====
 
-Der Autor übernimmt KEINE Haftung für Schäden, die eventuell durch diese 
+Der Autor Ã¼nimmt KEINE Haftung fÃ¼r SchÃ¤den, die eventuell durch diese 
 Software entstanden sind.
-Der YouTubeDownloader wurde für Schulungszwecke geschreiben, und darf NUR 
-für diese verwendet werden.
+Der YouTubeDownloader wurde fÃ¼r Schulungszwecke geschreiben, und darf NUR 
+fÃ¼r diese verwendet werden.
 
 ====v93.eu====
 
 Der YouTubeDownloader ...
-....darf NICHT für kommerzielle Zwecke ohne Einverständnis
+....darf NICHT fÃ¼r kommerzielle Zwecke ohne EinverstÃ¤nis
 des Autors verwendet werden.
-...darf verändert/angepasst/bearbeitet/kopiert/gespeichert/gelöscht werden.
-...darf verfielfältigt/verbreitet/gedruckt und öffentlich zugänglich gemacht werden.
+...darf verÃ¤ndert/angepasst/bearbeitet/kopiert/gespeichert/gelÃ¶scht werden.
+...darf verfielfÃ¤ltigt/verbreitet/gedruckt und Ã¶ffentlich zugÃ¤nglich gemacht werden.
 ...darf von Rechtschreibfehlern bereinigt werden.
 
 ====v93.eu====
 
-Abgesehen davon, dass dises Programm selbsterklärend ist....
+Abgesehen davon, dass dises Programm selbsterklÃ¤rend ist....
 
-Anleitung für Dummies:
+Anleitung fÃ¼r Dummies:
 1. Alles aus dem Zip-Archiv in einen belibigen ordner entpacken.
 2. Doppelklick auf die YouTubeDownloader.exe um die GUI zu starten
-3. Video-URL per Kopieren und Einfügen (z.B. aus dem Browser) in die Textbox einfügen.
-4. In der Liste unten das Format und die Qualität auswählen 
-	(falls die gewünschte qualität nicht vorhanden ist wird mit niedrigerer Qualität heruntergeladen)
-	(also wenn man 1080p auswählt und es nur 720p gibt wird 720p heruntergeladen)
-5. In der Checkbox auswählen ob dann in mp3 (nur der Ton) convertiert werden soll. (geht NICHT bei flv und 3gp)
-6. Auf "Download" drücken.
+3. Video-URL per Kopieren und EinfÃ¼gen (z.B. aus dem Browser) in die Textbox einfÃ¼gen.
+4. In der Liste unten das Format und die QualitÃ¤t auswÃ¤hlen 
+	(falls die gewÃ¼nschte qualitÃ¤t nicht vorhanden ist wird mit niedrigerer QualitÃ¤t heruntergeladen)
+	(also wenn man 1080p auswÃ¤hlt und es nur 720p gibt wird 720p heruntergeladen)
+5. In der Checkbox auswÃ¤hlen ob dann in mp3 (nur der Ton) convertiert werden soll. (geht NICHT bei flv und 3gp)
+6. Auf "Download" drÃ¼cken.
 7. Warten.
 8. Das Video/mp3 befindet sich dann
 	a) Windows XP: 		Eigene Dateien\YouTube\
-	b) Windows Vista:	Eigene Dateien\Dokumente\YouTube <---(noch nicht überprüft)
+	b) Windows Vista:	Eigene Dateien\Dokumente\YouTube <---(noch nicht Ã¼berprÃ¼ft)
 	c) Windows 7:		Biblioteken\Dokumente\YouTube\		(Eigene Dokumente\YouTube\)
 
 9. Fertig
@@ -47,9 +47,9 @@ Anleitung für Dummies:
 ====v93.eu====
 
 
-Anleitung für die Commandozeile:
-1. Alle Funktionen die über die GUI verfügbar sind, sind auch in der
-	commandozeile verfügbar.
+Anleitung fÃ¼r die Commandozeile:
+1. Alle Funktionen die Ã¼ber die GUI verfÃ¼gbar sind, sind auch in der
+	commandozeile verfÃ¼gbar.
 2. Parameter:
   -h, --help        show this help message and exit
   --hd              Video in hoher Qualitaet (720p) herunterladen, wenn /*help/h funktioniert leider nicht immer*/

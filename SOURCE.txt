@@ -1,7 +1,7 @@
 YouTubeDownloader-vX.Y.py:
-	Orginal Sourcecode für Windows und Linux (und Linux ähnlichem).
+	Orginal Sourcecode fÃ¼r Windows und Linux (und Linux Ã¤hnlichem).
 	
-	Um das Programm vollständig zu nutzen müssen 
+	Um das Programm vollstÃ¤ndig zu nutzen mÃ¼ssen 
 	folgende Pakete und python installiert sein:
 	wxpython lame faad2 
 	
