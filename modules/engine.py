@@ -79,6 +79,8 @@ class Youtube(threading.Thread):
 			
 			self.title = self.title.replace(":", " ")
 			self.title = self.title.replace("|", " ")
+			self.title = self.title.replace("\\", " ")
+			self.title = self.title.replace("/", " ")
 			
 			
 			#NOW USELESS!!! (I think...)
