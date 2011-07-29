@@ -71,7 +71,7 @@ class Youtube(threading.Thread):
 			modules.log().info(_('...downloaded...'))
 			for line in h.readlines():
 				#Die Linie mit der javascript variable "swfHTML" in eine Variable schreiben
-				if line.find("var swfConfig") != -1:
+				if line.find("'PLAYER_CONFIG':") != -1:
 					swfArgs = line
 				#Den Titel  finden und aus dem Quelltext 'extrahieren'
 				if line.find("<meta name=\"title\" content=\"") != -1:
