@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 
-
 import urllib,webbrowser,os,tempfile,time,threading,sys
 import modules.cfg
 import modules.log
 
-#~ import modules.tagger
+
 try:
 	import wx
-	#~ from modules.event import ThreadEvent
 except ImportError:
 	modules.log().info(_("No wx-widgets found. (engine)"))
-
 
 class Youtube(threading.Thread):
 	def __init__(self, args,usehd,usefullhd,use3gp,useflv,convert,useweb, useurl, usewebm, usefmt,bestqual):
@@ -30,10 +27,8 @@ class Youtube(threading.Thread):
 		self.bestqual = bestqual
 		
 	def run(self):
-		
 		modules.log().info('----------------')
-		
-		
+
 		if modules.cfg.iswin:
 			#Ordner falls nicht vorhanden anlegen
 			self.home = os.environ["HOMEPATH"] + '\\Eigene Dateien'
@@ -69,6 +64,7 @@ class Youtube(threading.Thread):
 			modules.log().info(_('Download and parse Sourcecode...'))
 			h = urllib.urlopen(video)
 			modules.log().info(_('...downloaded...'))
+			
 			for line in h.readlines():
 				#Die Linie mit der javascript variable "swfHTML" in eine Variable schreiben
 				if line.find("'PLAYER_CONFIG':") != -1:
@@ -81,26 +77,7 @@ class Youtube(threading.Thread):
 			self.title = self.title.replace("|", " ")
 			self.title = self.title.replace("\\", " ")
 			self.title = self.title.replace("/", " ")
-			
-			
-			#NOW USELESS!!! (I think...)
-			#die video_id finden und speichern
-			for lol in swfArgs.split(',') :
-				if lol.find('video_id') != -1:
-					video_id = lol
-			video_id = video_id.split('"')[-2]
-			#~ print video_id
 
-
-			#NOW USELESS!!! (I think...)
-			#die geheimnissvolle "t"(oken) Variable finden und speichern
-			for lol in swfArgs.split(',') :
-				if lol.find('"t":') != -1:
-					t = lol
-			t = t.split('"')[-2]
-			#~ print t
-			
-			
 			fmt_map_all=[] # [[fmt][resolution][url]][...]
 			fmt_map_all_sub = []
 			fmt_map_resolution = []
@@ -110,7 +87,6 @@ class Youtube(threading.Thread):
 				if lol.find('fmt_map":') != -1:
 					fmt_map_pre = lol
 			fmt_map_pre = fmt_map_pre.split('"')[-2]
-			
 			
 			#Verfuegbare fmts und Download Formate finden
 			for lol in swfArgs.split(', "') :
@@ -136,11 +112,9 @@ class Youtube(threading.Thread):
 				fmt_map_all.append(fmt_map_all_sub)
 				i = i +1
 			
-			#~ modules.log().info(("Debug ausgabe: %s") %fmt_url_map_url[2][0])
+			#~ modules.log().info(("Debug: %s") %fmt_url_map_url[2][0])
 			
-
 			modules.log().info(_("Resolutions: %d (Best: %s).") %(rescount,fmt_map_all[0][1]))
-
 			
 			isHDAvailable = False
 			isFullHDAvailable = False
@@ -156,10 +130,6 @@ class Youtube(threading.Thread):
 				#pruefen ob megahd/orginal? verfuegbar ist
 				if fmt_map_all[i][0] == 38:
 					isMegaHDAvailabe = True
-				#~ quit()
-			
-
-
 	
 			modules.log().info(_('...parsed.'))
 			
@@ -168,7 +138,6 @@ class Youtube(threading.Thread):
 			fmt = 18
 			self.suffix = ".mp4"
 			
-	
 			if self.usefmt != False and self.usefmt != 12345678901:
 				fmt = self.usefmt
 				modules.log().info(_("Use custom fmt=%s.") %fmt)
@@ -184,7 +153,6 @@ class Youtube(threading.Thread):
 				else:
 					self.suffix = ""
 	
-			
 			if self.useflv :
 				fmt = 5
 				self.suffix = ".flv"
@@ -202,7 +170,7 @@ class Youtube(threading.Thread):
 						modules.log().info(_("Video will be downloaded in default quality."))
 			elif self.usefullhd :
 				if self.usewebm:
-					fmt = 45 #??<--stimmt noch nicht !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					fmt = 45 #??<--stimmt noch nicht!
 				else:
 					if isFullHDAvailable:
 						fmt = 37
@@ -236,16 +204,11 @@ class Youtube(threading.Thread):
 						self.url = fmt_map_all[i][2]
 					print fmt_map_all[i][0]
 					
-			
-			
-			#~ self.url = "http://www.youtube.com/get_video?&video_id=" + video_id + "&t=" + t  + "&asv=&fmt=%s" %fmt
-			#~ print self.url
 			if modules.cfg.iswin:
 				#Tempfiles erstellen
 				tmp_vid = tempfile.mkstemp(prefix="ytvid_", suffix=self.suffix)[1]
 				tmp_wav = tempfile.mkstemp(prefix="ytwav_", suffix=".wav")[1]
 				modules.log().info(_("Temp-files created."))
-			
 			else:
 				#Tempfile erstellen
 				tmp = tempfile.mkstemp(prefix="ytvid_", suffix=self.suffix)[1]
@@ -255,24 +218,17 @@ class Youtube(threading.Thread):
 				webbrowser.open(self.url)
 			elif   self.useurl and not self.useweb and not self.convert:
 				print self.url
-				#~ print "LLLLOOOOOOLLL"
 			elif self.useweb and self.convert :
-				#~ modules.log().info("Das Video kann nicht im Webbrowser geoeffnet und konvertiert werden. (Script entweder ohne -w/--webbrowser oder -c/--convert aufrufen)")
 				modules.log().info(_("The Video can't opened in the browser and converted. (Use only w/--webbrowser or -c/--convert)."))
 			else :
 				#Die datei in die tmp-Datei Speichern
 				#~ os.system('wget "' + url + '" -U "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.2) Gecko/20090804 Shiretoko/3.5.2" -O ' + tmp)	
-				pass
-
-
-#X
 				if modules.cfg.iswin:
 					urllib.urlretrieve(self.url, tmp_vid, reporthook=self.dlProgress)
 				else:
 					urllib.urlretrieve(self.url, tmp, reporthook=self.dlProgress)
-					#~ pass
+
 				modules.log().info(_('Download completed.'))
-				
 
 				#mit faad und lame zu mp3 convertieren
 				if self.convert and not (self.use3gp or self.useflv or self.useweb)  :
@@ -288,41 +244,37 @@ class Youtube(threading.Thread):
 						os.system('faad -o - ' + tmp + ' | lame - --tc Youtube "' + self.pfad + '"')
 						
 					if modules.cfg.TaggerBox and modules.cfg.frame and modules.cfg.iswx:
-						
-						
-				#EVENT
+						#EVENT
 						myThreadEvent = modules.ThreadEvent(self.pfad, self.title)
 						modules.cfg.frame.GetEventHandler().AddPendingEvent(myThreadEvent)	
-				#EVENT
-						
+						#EVENT
 						
 					if modules.cfg.frame:
 						wx.CallAfter(self.TextAfter, _("Converted!"))
 				elif self.convert :
 					modules.log().info(_("Only *.mp4 can be converted."))
+				
 				#Falls Datei schon vorhanden ein teil den Unix-Timestamps als Dateinamen drannhaengen
-
 				if os.path.isfile(self.dir + '\\' + self.title + self.suffix) :
 					timestamp = str(time.time())[0:10]
+					
 					if modules.cfg.iswin:
 						os.system('copy ' + tmp_vid + ' "' + self.dir + '\\' + self.title + "_new" + timestamp + self.suffix + '"')
 					else:
 						os.system('mv ' + tmp + ' "' + self.dir + '/' + self.title + "_new" + timestamp + self.suffix + '"')
+						
 					modules.log().info(_("Video already exists."))
 					modules.log().info(_('Video will be moved to "%s/%s_new%s%s".') %(self.dir,self.title, timestamp,self.suffix))
-				#Wenn noch nicht vorhanden die Tmp-Datei in das Speicher-Verzeichniss copieren und in den Tiitel des
+					
+				#Wenn noch nicht vorhanden, die Tmp-Datei in das Speicher-Verzeichniss kopieren und in den Titel des
 				#Videos umbenennen
 				else:
 					if modules.cfg.iswin:
 						os.system('copy "' + tmp_vid + '" "' + self.dir + '\\' + self.title + self.suffix + '"')
-						# print 'copy "' + tmp_vid + '" "' + self.dir + '\\' + title + self.suffix + '"'
 					else:
 						os.system('mv ' + tmp + ' "' + self.dir + '/' + self.title + self.suffix + '"')
+						
 					modules.log().info(_('"%s" moved to %s.') %(self.title,self.dir))
-					
-
-
-					
 					
 	def dlProgress(self,count, blockSize, totalSize):
 		#Wenn das Video keine groese hat ist es nicht da :-)
@@ -343,7 +295,6 @@ class Youtube(threading.Thread):
 				sys.stdout.write("%2d%%" % percent)
 				sys.stdout.write("\b\b\b")
 				sys.stdout.flush()
-
 		
 	def DlAfter(self,percent):
 		if percent == 100:
@@ -353,7 +304,6 @@ class Youtube(threading.Thread):
 			sys.stdout.write("\b\b\b")
 			sys.stdout.flush()
 		else:
-			
 			modules.cfg.frame.Gauge.SetValue(percent)
 			modules.cfg.frame.sb.SetStatusText('Downloading... ' + str(percent) + '%')
 			sys.stdout.write("%2d%%" % percent)
@@ -362,12 +312,3 @@ class Youtube(threading.Thread):
 			
 	def TextAfter(self,text):
 		modules.cfg.frame.sb.SetStatusText(text)
-		
-
-#EVENT
-#~ class ThreadEvent(wx.PyEvent):
-	#~ def __init__(self, pfad, title):
-		#~ wx.PyEvent.__init__(self)
-		#~ self.SetEventType(modules.cfg.wxEVT_THREAD_COM)
-		#~ self.pfad = pfad
-		#~ self.title = title
