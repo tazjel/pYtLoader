@@ -6,11 +6,6 @@ import modules.cfg
 import modules.ID3
 
 
-
-
-
-
-
 class CustomStatusBar(wx.StatusBar):
 	def __init__(self, parent):
 		wx.StatusBar.__init__(self, parent, -1)
@@ -23,7 +18,6 @@ class ThreadEvent(wx.PyEvent):
 		self.SetEventType(modules.cfg.wxEVT_THREAD_COM)
 		self.pfad = pfad
 		self.title = title
-
 
 class tagger(wx.MiniFrame):
 	def __init__(self, parent, id, pfad, title):
@@ -118,6 +112,8 @@ class gui(wx.Frame):
 		self.Youtube = _Youtube
 		wx.Frame.__init__(self, parent, id, "Youtube-Downloader", size=(windows_size_x,windows_size_y))
 		self.panel=wx.Panel(self)
+		self.showAdvancedWindow = False
+		
 		#Custom, da sonst in Windows alles verrutscht ist
 		self.sb = CustomStatusBar(self.panel)
 #EVENT
@@ -193,10 +189,10 @@ class gui(wx.Frame):
 		#~ self.Bind(wx.EVT_LISTBOX, self.doListBox, self.DType2)
 		
 		
-		#Advanced-Checkbox
+		#Advanced-Button
 		self.ConvertBox = wx.CheckBox ( self.panel, -1, _('Convert to mp3'))
-		self.AdvancedBox = wx.CheckBox ( self.panel, -1, _('Advanced'))
-		self.Bind(wx.EVT_CHECKBOX, self.doAdvanced, self.AdvancedBox)
+		self.AdvancedBox = wx.Button ( self.panel, -1, _('Advanced'))
+		self.Bind(wx.EVT_BUTTON, self.doAdvanced, self.AdvancedBox)
 		
 		#Dieverse Knoepfe+was sie passiert wenn sie gedrueckt werden
 		self.DButton=wx.Button(self.panel, -1, _("Download"), size=(140,80))
@@ -277,15 +273,15 @@ class gui(wx.Frame):
 		
 	def doHide(self, event):
 		self.win.Show(False)
-		self.AdvancedBox.SetValue(False)
-
+		self.showAdvancedWindow = False
 		
 	def doAdvanced(self, event):
-		if self.AdvancedBox.GetValue():
-			self.win.Show(True)
-		else:
+		if self.showAdvancedWindow:
 			self.win.Show(False)
-			
+			self.showAdvancedWindow = False
+		else:
+			self.win.Show(True)
+			self.showAdvancedWindow = True
 		
 	def doDownload(self, event):
 		if self.Url.GetValue() == "":
