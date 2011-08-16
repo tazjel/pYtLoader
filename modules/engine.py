@@ -84,15 +84,16 @@ class Youtube(threading.Thread):
 			
 			#Verfuegbare Formate finden
 			for lol in swfArgs.split(', "') :
-				if lol.find('fmt_map":') != -1:
+				if lol.find('fmt_list":') != -1:
 					fmt_map_pre = lol
 			fmt_map_pre = fmt_map_pre.split('"')[-2]
 			
 			#Verfuegbare fmts und Download Formate finden
 			for lol in swfArgs.split(', "') :
-				if lol.find('fmt_url_map":') != -1:
+				if lol.find('url_encoded_fmt_stream_map":') != -1:
 					fmt_url_map_pre = lol
-			fmt_url_map_pre = fmt_url_map_pre.split('"')[-2]
+			#Skip first 4 chars ("url=")
+			fmt_url_map_pre = fmt_url_map_pre.split('"')[-2][4:]
 			
 			#wieviele Auflosungen vorhanden sind
 			rescount = fmt_map_pre.count(',') +1
@@ -103,11 +104,13 @@ class Youtube(threading.Thread):
 			
 			#verfuegbare fmts und Download urls finden finden 
 			i = 0
-			for lol in fmt_url_map_pre.split(','):
+			for lol in fmt_url_map_pre.split(',url='):
+				fmt_map_array = urllib.unquote(lol).split("\u0026")
+				
 				fmt_map_all_sub = []
-				fmt_map_all_sub.append(int(lol.split('|')[0]))
-				fmt_map_all_sub.append(fmt_map_resolution[i])
-				fmt_map_all_sub.append((lol.split('|')[1]).replace("\/", "/").replace("\u0026","&"))
+				fmt_map_all_sub.append(fmt_map_array[4])  #fmt
+				fmt_map_all_sub.append(fmt_map_resolution[i])  #resolution
+				fmt_map_all_sub.append(fmt_map_array[0]) #url
 				
 				fmt_map_all.append(fmt_map_all_sub)
 				i = i +1
