@@ -21,7 +21,7 @@ import modules
 import modules.cfg
 
 trans = gettext.translation("v93ytLoader", "locale", ["de"]) 
-trans.install()
+trans.install(unicode=True)
 
 
 #leerzeile
