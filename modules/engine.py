@@ -108,7 +108,7 @@ class Youtube(threading.Thread):
 				fmt_map_array = urllib.unquote(temp).split("\u0026")
 				
 				videoInfoSubArray = []
-				videoInfoSubArray.append(fmt_map_array[4])  #fmt
+				videoInfoSubArray.append(int(fmt_map_array[4].split("=")[-1]))  #fmt
 				videoInfoSubArray.append(videoInfoResolutionArray[i])  #resolution
 				videoInfoSubArray.append(fmt_map_array[0]) #url
 				
@@ -203,7 +203,6 @@ class Youtube(threading.Thread):
 				for i in range(len(videoInfo)):
 					if videoInfo[i][0] == fmt:
 						self.url = videoInfo[i][2]
-					print videoInfo[i][0]
 					
 			if modules.cfg.iswin:
 				#Tempfiles erstellen
