@@ -78,60 +78,58 @@ class Youtube(threading.Thread):
 			self.title = self.title.replace("\\", " ")
 			self.title = self.title.replace("/", " ")
 
-			fmt_map_all=[] # [[fmt][resolution][url]][...]
-			fmt_map_all_sub = []
-			fmt_map_resolution = []
+			videoInfo=[] # [[fmt][resolution][url]][...]
+			videoInfoSubArray = []
+			videoInfoResolutionArray = []
 			
 			#Verfuegbare Formate finden
-			for lol in swfArgs.split(', "') :
-				if lol.find('fmt_list":') != -1:
-					fmt_map_pre = lol
-			fmt_map_pre = fmt_map_pre.split('"')[-2]
+			for temp in swfArgs.split(', "') :
+				if temp.find('fmt_list":') != -1:
+					videoInfoTempArray = temp
+			videoInfoTempArray = videoInfoTempArray.split('"')[-2]
 			
-			#Verfuegbare fmts und Download Formate finden
-			for lol in swfArgs.split(', "') :
-				if lol.find('url_encoded_fmt_stream_map":') != -1:
-					fmt_url_map_pre = lol
-			#Skip first 4 chars ("url=")
-			fmt_url_map_pre = fmt_url_map_pre.split('"')[-2][4:]
+			#Verfuegbare fmts und download Formate finden
+			for temp in swfArgs.split(', "') :
+				if temp.find('url_encoded_fmt_stream_map":') != -1:
+					videoInfoTempUrlArray = temp
+			#Die ersten 4 chars ("url=") ueberspringen
+			videoInfoTempUrlArray = videoInfoTempUrlArray.split('"')[-2][4:]
 			
 			#wieviele Auflosungen vorhanden sind
-			rescount = fmt_map_pre.count(',') +1
+			rescount = videoInfoTempArray.count(',') +1
 			
 			#verfuegbare Auflosungen finden 
-			for lol in fmt_map_pre.split(','):
-				fmt_map_resolution.append(lol.split('\\/')[1])
+			for temp in videoInfoTempArray.split(','):
+				videoInfoResolutionArray.append(temp.split('\\/')[1])
 			
 			#verfuegbare fmts und Download urls finden finden 
 			i = 0
-			for lol in fmt_url_map_pre.split(',url='):
-				fmt_map_array = urllib.unquote(lol).split("\u0026")
+			for temp in videoInfoTempUrlArray.split(',url='):
+				fmt_map_array = urllib.unquote(temp).split("\u0026")
 				
-				fmt_map_all_sub = []
-				fmt_map_all_sub.append(fmt_map_array[4])  #fmt
-				fmt_map_all_sub.append(fmt_map_resolution[i])  #resolution
-				fmt_map_all_sub.append(fmt_map_array[0]) #url
+				videoInfoSubArray = []
+				videoInfoSubArray.append(fmt_map_array[4])  #fmt
+				videoInfoSubArray.append(videoInfoResolutionArray[i])  #resolution
+				videoInfoSubArray.append(fmt_map_array[0]) #url
 				
-				fmt_map_all.append(fmt_map_all_sub)
+				videoInfo.append(videoInfoSubArray)
 				i = i +1
 			
-			#~ modules.log().info(("Debug: %s") %fmt_url_map_url[2][0])
-			
-			modules.log().info(_("Resolutions: %d (Best: %s).") %(rescount,fmt_map_all[0][1]))
+			modules.log().info(_("Resolutions: %d (Best: %s).") %(rescount,videoInfo[0][1]))
 			
 			isHDAvailable = False
 			isFullHDAvailable = False
 			isMegaHDAvailable = False
 			
-			for i in range(len(fmt_map_all)):
+			for i in range(len(videoInfo)):
 				#pruefen ob 720p HD verfuegbar ist 
-				if fmt_map_all[i][0] == 22:
+				if videoInfo[i][0] == 22:
 					isHDAvailable = True
 				#pruefen ob 1080p HD verfuegbar ist
-				if fmt_map_all[i][0] == 37:
+				if videoInfo[i][0] == 37:
 					isFullHDAvailable = True
 				#pruefen ob megahd/orginal? verfuegbar ist
-				if fmt_map_all[i][0] == 38:
+				if videoInfo[i][0] == 38:
 					isMegaHDAvailabe = True
 	
 			modules.log().info(_('...parsed.'))
@@ -200,12 +198,12 @@ class Youtube(threading.Thread):
 			#fmt mit fmt_url_map_url[i][0] vergleichen und dann die Download url fmt_url_map_url[i][1] nehmen.
 			#Beste Qualitat?
 			if self.bestqual:
-				self.url = fmt_map_all[0][2]
+				self.url = videoInfo[0][2]
 			else:
-				for i in range(len(fmt_map_all)):
-					if fmt_map_all[i][0] == fmt:
-						self.url = fmt_map_all[i][2]
-					print fmt_map_all[i][0]
+				for i in range(len(videoInfo)):
+					if videoInfo[i][0] == fmt:
+						self.url = videoInfo[i][2]
+					print videoInfo[i][0]
 					
 			if modules.cfg.iswin:
 				#Tempfiles erstellen
