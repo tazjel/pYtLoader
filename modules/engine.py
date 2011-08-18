@@ -114,8 +114,8 @@ class Youtube(threading.Thread):
 				
 				videoInfo.append(videoInfoSubArray)
 				i = i +1
-			
-			modules.log().info(_("Resolutions: %d (Best: %s).") %(rescount,videoInfo[0][1]))
+
+			modules.log().info(_("Resolutions: %d (Best: %s)." %(rescount,videoInfo[0][1])))
 			
 			isHDAvailable = False
 			isFullHDAvailable = False
