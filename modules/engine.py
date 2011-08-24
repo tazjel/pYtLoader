@@ -56,6 +56,8 @@ class Youtube(threading.Thread):
 				os.mkdir(self.home + "/YouTube/mp3")
 			if not os.path.exists(self.home + "/YouTube/3gp") :
 				os.mkdir(self.home + "/YouTube/3gp")
+			if not os.path.exists(self.home + "/YouTube/flv") :
+				os.mkdir(self.home + "/YouTube/flv")
 			if not os.path.exists(self.home + "/YouTube/webm") :
 				os.mkdir(self.home + "/YouTube/webm")
 		
