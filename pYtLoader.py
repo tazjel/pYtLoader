@@ -3,18 +3,16 @@
 ######################
 #pYtLoader.py
 ######################
-#v93.eu#
+#v93.eu
 ######################
-#Lizens, Haftung, Anleitung
-#siehe Liesmich.txt
+#For more Info read README
 ######################
-#short 1080p clip (no webm -.-)
+#short 1080p test clip with webm (37 45 22 44 35 43 34 18 5)
 #http://www.youtube.com/watch?v=fGTMirS6L_c
 ######################
 #TOBO:id3tag: "http://img.youtube.com/vi/"..video_id.."/default.jpg"
-#engine:Array(fmt,resoltuion,url)
-import urllib,webbrowser,os,tempfile,time,threading,re, sys
-import gettext
+
+import urllib, webbrowser, os, tempfile, time, threading, re, sys, gettext
 from optparse import OptionParser
 from optparse import OptionGroup
 import modules
@@ -22,7 +20,6 @@ import modules.cfg
 
 trans = gettext.translation("pYtLoader", "locale", ["de"]) 
 trans.install(unicode=True)
-
 
 #leerzeile
 print ""
@@ -39,12 +36,14 @@ group.add_option("", "--hd", dest="usehd", help=_("Download in high quality (720
 group.add_option("", "--fullhd", dest="usefullhd", help=_("Download in high quality (1080p), if available."), default=False, action="store_true")
 group.add_option("-3", "--3gp", dest="use3gp", help=_("Download as 3gp for mobile phones video (MPEG-4)."), default=False, action="store_true")
 group.add_option("-l", "--flv", dest="useflv", help=_("Download video as flv."), default=False, action="store_true")
+
 advanced_group.add_option("-f", "--fmt", dest="usefmt", help=_("Download video in custom quality (-f 0 to show the fmt list; Without this option the best quality will be downloaded.)"), metavar="FMT")
 advanced_group.add_option("", "--megahd", dest="usemegahd", help=_("Download in very high quality (4096x2304), if available."), default=False, action="store_true")
 advanced_group.add_option("", "--3gp4", dest="use3gp4", help=_("Download as 3gp for mobile phones video (h263)."), default=False, action="store_true")
 advanced_group.add_option("-w", "--webm", dest="usewebm", help=_("Download video in WebM."), default=False, action="store_true")
 advanced_group.add_option("-u", "--url", dest="useurl", help=_("Only print download URL."), default=False, action="store_true")
 advanced_group.add_option("-b", "--webbrowser", dest="useweb", help=_("Open downloadurl in your default webbrowser. (senseless?!)"), default=False, action="store_true")
+
 parser.add_option_group(group)
 parser.add_option_group(advanced_group)
 (options, args) = parser.parse_args()
@@ -56,6 +55,7 @@ if not options.usefmt:
 else: 	
 	usefmt = int(options.usefmt)
 	bestqual = False
+
 usehd =  options.usehd
 usefullhd =  options.usefullhd
 usemegahd =  options.usemegahd
@@ -66,8 +66,6 @@ convert = options.convert
 useurl = options.useurl
 useweb = options.useweb
 usewebm = options.usewebm
-
-
 
 if  (usefmt == 0):
 	print _("mp4 - fmt-list")
@@ -90,11 +88,9 @@ modules.log().info(_("logging the world"))
 #Wo bin ich gerade?
 if sys.platform == "win32":
 	modules.cfg.iswin = True
-	modules.log().info(_("We are on a Windows Operating System"))
+	modules.log().info(_("We are on a Windows operating system"))
 else:
-	modules.log().info(_("THIS IS LINUX!!! (or similar)"))
-
-gui_enabled = False
+	modules.log().info(_("We are on a Linux (or similar) operating system"))
 
 if modules.cfg.iswin:
 	windows_size_x = 395
@@ -109,19 +105,10 @@ class UserAgent(urllib.FancyURLopener):
 urllib._urlopener = UserAgent()
 
 
-
-
-
-#http://www.youtube.com/watch?v=47DlwB6Ih2s
-
-
 if __name__=='__main__':
 	#wenn die Datei mit argumenten aufgerufen wird nicht die gui starten sondern gleich downloaden
 	if (usefmt == '0') or  args:
-		#~ print args
-
-		c= modules.Youtube(args,usehd,usefullhd,use3gp,useflv,convert,useweb, useurl, usewebm, usefmt,bestqual)
-		#~ c= modules.Youtube(args,frame,usehd,usefullhd,use3gp,useflv,convert,useweb)
+		c= modules.Youtube(args, usehd, usefullhd, use3gp, useflv, convert, useweb, useurl, usewebm, usefmt, bestqual)
 		c.start()
 		
 	#ohne aurgumente --> gui starten
@@ -133,16 +120,11 @@ if __name__=='__main__':
 			#von shell starten
 			modules.log().info(_("No wx-widgets found."))
 
-		
 		if modules.cfg.iswx:
 			import modules.gui
 			app=wx.PySimpleApp()
-			modules.cfg.frame=modules.gui(None,-1, windows_size_x, windows_size_y, modules.Youtube)
+			modules.cfg.frame=modules.gui(None, -1, windows_size_x, windows_size_y, modules.Youtube)
 			modules.cfg.frame.Center()
-			modules.cfg.frame.SetMinSize((windows_size_x,windows_size_y))
+			modules.cfg.frame.SetMinSize((windows_size_x, windows_size_y))
 			modules.cfg.frame.Show()
 			app.MainLoop()
-			#~ from modules.event import ThreadEvent
-	
-
-		

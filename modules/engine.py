@@ -12,7 +12,6 @@ except ImportError:
 
 class Youtube(threading.Thread):
 	def __init__(self, args,usehd,usefullhd,use3gp,useflv,convert,useweb, useurl, usewebm, usefmt,bestqual):
-	#~ def __init__(self,frame,args,usehd,usefullhd,use3gp,useflv,convert,useweb):
 		threading.Thread.__init__(self)        
 		self.args=args
 		self.usehd=usehd
@@ -68,7 +67,7 @@ class Youtube(threading.Thread):
 			modules.log().info(_('...downloaded...'))
 			
 			for line in h.readlines():
-				#Die Linie mit der javascript variable "swfHTML" in eine Variable schreiben
+				#Die Linie mit der javascript variable "PLAYER_CONFIG" in eine Variable schreiben
 				if line.find("'PLAYER_CONFIG':") != -1:
 					swfArgs = line
 				#Den Titel  finden und aus dem Quelltext 'extrahieren'
@@ -85,13 +84,13 @@ class Youtube(threading.Thread):
 			videoInfoResolutionArray = []
 			
 			#Verfuegbare Formate finden
-			for temp in swfArgs.split(', "') :
+			for temp in swfArgs.split(', "'):
 				if temp.find('fmt_list":') != -1:
 					videoInfoTempArray = temp
 			videoInfoTempArray = videoInfoTempArray.split('"')[-2]
 			
 			#Verfuegbare fmts und download Formate finden
-			for temp in swfArgs.split(', "') :
+			for temp in swfArgs.split(', "'):
 				if temp.find('url_encoded_fmt_stream_map":') != -1:
 					videoInfoTempUrlArray = temp
 			#Die ersten 4 chars ("url=") ueberspringen
@@ -144,7 +143,6 @@ class Youtube(threading.Thread):
 			if self.usefmt != False and self.usefmt != 12345678901:
 				fmt = self.usefmt
 				modules.log().info(_("Use custom fmt=%s.") %fmt)
-				#~ print self.usefmt
 				if self.usefmt == 5:
 					self.suffix = ".flv"
 				elif self.usefmt == 17 or self.usefmt == 13:
@@ -173,7 +171,7 @@ class Youtube(threading.Thread):
 						modules.log().info(_("Video will be downloaded in default quality."))
 			elif self.usefullhd :
 				if self.usewebm:
-					fmt = 45 #??<--stimmt noch nicht!
+					fmt = 45
 				else:
 					if isFullHDAvailable:
 						fmt = 37
@@ -223,8 +221,7 @@ class Youtube(threading.Thread):
 			elif self.useweb and self.convert :
 				modules.log().info(_("The Video can't opened in the browser and converted. (Use only w/--webbrowser or -c/--convert)."))
 			else :
-				#Die datei in die tmp-Datei Speichern
-				#~ os.system('wget "' + url + '" -U "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.2) Gecko/20090804 Shiretoko/3.5.2" -O ' + tmp)	
+				#Die datei in die tmp-Datei speichern
 				if modules.cfg.iswin:
 					urllib.urlretrieve(self.url, tmp_vid, reporthook=self.dlProgress)
 				else:

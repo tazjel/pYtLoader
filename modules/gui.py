@@ -26,9 +26,7 @@ class tagger(wx.MiniFrame):
 		self.pfad = pfad
 		self.autofill = True
 		
-
 		wx.Frame.__init__(self, parent, id, "Tagger - " + self.title, style = wx.DEFAULT_MINIFRAME_STYLE)
-		
 
 		self.panel_tagger= wx.Panel(self)
 		
@@ -37,9 +35,6 @@ class tagger(wx.MiniFrame):
 		self.Bind(wx.EVT_BUTTON, self.doClose, self.CButton_tagger)
 		self.AFButton_tagger=wx.Button(self.panel_tagger, -1, _("AutoFill"), size=(70,35))
 		self.Bind(wx.EVT_BUTTON, self.doAutoFill, self.AFButton_tagger)
-
-
-
 
 		#Text
 		self.Text_Titel_tagger=wx.StaticText(self.panel_tagger, -1, _("Titel:"), )
@@ -56,9 +51,6 @@ class tagger(wx.MiniFrame):
 		self.Album_tagger.SetToolTipString(_("The Album, on witch this song ws published."))
 		self.Interpret_tagger.SetToolTipString(_("The band/The singer/The DJ who \nhas published this Song on a album."))
 		
-
-		
-		
 		#Sizer
 		self.Grid_Sizer_tagger = wx.GridSizer(4, 2, 5, 0)
 		self.Grid_Sizer_tagger.Add(self.Text_Titel_tagger, 0, wx.ALIGN_RIGHT|wx.ALL|wx.ALIGN_CENTER_VERTICAL, 10)
@@ -73,10 +65,8 @@ class tagger(wx.MiniFrame):
 		self.panel_tagger.SetSizer(self.Grid_Sizer_tagger)
 		self.Grid_Sizer_tagger.Fit(self)
 
-		
 	def doClose(self, event):
 		#Die ID3tags schreiben
-		#~ self.id3info = modules.ID3(self.pfad.replace(' ', '\ ').replace('(','\(').replace(')','\)'))
 		modules.log().info(_("Set id3-tag"))
 		self.id3info = modules.ID3(self.pfad)
 		self.id3info['TITLE'] = self.Titel_tagger.GetValue()
@@ -85,33 +75,24 @@ class tagger(wx.MiniFrame):
 		print self.id3info
 		self.Destroy()
 		
-		
 	def doAutoFill(self, event):
-		#~ print self.autofill
 		self.title_split = self.title.split(" - ")
 		if self.autofill:
 			self.Interpret_tagger.SetValue(self.title_split[0])
 			self.title_split.pop(0)
-			#omfg wie unprofessionell...
 			self.Titel_tagger.SetValue(str(self.title_split).replace("', '", " - ").replace("['", "").replace("']", ""))
 			self.autofill = False
 		else:
 			self.Titel_tagger.SetValue(self.title_split[0])
 			self.title_split.pop(0)
-			#auch hier sehr, sehr unprofessionell...
 			self.Interpret_tagger.SetValue(str(self.title_split).replace("', '", " - ").replace("['", "").replace("']", ""))
 			self.autofill = True
 			
-		#~ print self.title_split
-		#~ print self.pfad
-
-
-#~ http://www.youtube.com/watch?v=5X-yqPhItr8
 class gui(wx.Frame):
-	def __init__(self,parent,id, windows_size_x, windows_size_y, _Youtube):		
+	def __init__(self, parent, id, windows_size_x, windows_size_y, _Youtube):		
 		self.Youtube = _Youtube
-		wx.Frame.__init__(self, parent, id, "%s %s" %(modules.cfg.name, modules.cfg.version), size=(windows_size_x,windows_size_y))
-		self.panel=wx.Panel(self)
+		wx.Frame.__init__(self, parent, id, "%s %s" %(modules.cfg.name, modules.cfg.version), size=(windows_size_x, windows_size_y))
+		self.panel = wx.Panel(self)
 		self.showAdvancedWindow = False
 		
 		#Custom, da sonst in Windows alles verrutscht ist
@@ -121,13 +102,13 @@ class gui(wx.Frame):
 #EVENT
 		
 	#DAS ADVANCED FENSTER -->
-		self.win = wx.MiniFrame(self, -1, _("Advanced"), wx.Point(100,100) ,size=(windows_size_x,windows_size_y), style = wx.DEFAULT_MINIFRAME_STYLE)
+		self.win = wx.MiniFrame(self, -1, _("Advanced"), wx.Point(100,100) , size = (windows_size_x, windows_size_y), style = wx.DEFAULT_MINIFRAME_STYLE)
 		self.win.Show(False)
 
 		self.panel_win= wx.Panel(self.win)
-		self.CButton_win=wx.Button(self.panel_win, -1, _("Close"), size=(70,35))
+		self.CButton_win=wx.Button(self.panel_win, -1, _("Close"), size = (70, 35))
 		self.Bind(wx.EVT_BUTTON, self.doHide, self.CButton_win)
-		self.RegexBox_win = wx.CheckBox ( self.panel_win, -1, _('Check YouTube-Urls.'))
+		self.RegexBox_win = wx.CheckBox (self.panel_win, -1, _('Check YouTube-Urls.'))
 		self.Advancedfmt_win = wx.CheckBox ( self.panel_win, -1, _('More resolutions'))
 		self.Bind(wx.EVT_CHECKBOX, self.doDType, self.Advancedfmt_win)
 		self.Tagger_win = wx.CheckBox ( self.panel_win, -1, _('Activate mp3-Tagger. (BETA)'))
@@ -137,29 +118,18 @@ class gui(wx.Frame):
 		
 		#Positionierung mit sizers
 		self.Checkbox_win = wx.BoxSizer(wx.VERTICAL)
-		self.Checkbox_win.Add(self.RegexBox_win, 0,wx.ALL, border = 5)
-		self.Checkbox_win.Add(self.Advancedfmt_win, 0,wx.ALL, border = 5)
-		self.Checkbox_win.Add(self.Tagger_win, 0,wx.ALL, border = 5)
-		self.Checkbox_win.Add(self.Font_win, 0,wx.ALL, border = 5)
-		self.Checkbox_win.Add(self.CButton_win, 0,wx.LEFT, border = 10)
+		self.Checkbox_win.Add(self.RegexBox_win, 0, wx.ALL, border = 5)
+		self.Checkbox_win.Add(self.Advancedfmt_win, 0, wx.ALL, border = 5)
+		self.Checkbox_win.Add(self.Tagger_win, 0, wx.ALL, border = 5)
+		self.Checkbox_win.Add(self.Font_win, 0, wx.ALL, border = 5)
+		self.Checkbox_win.Add(self.CButton_win, 0, wx.LEFT, border = 10)
 		
 		self.Advanced_win = wx.BoxSizer()
-		self.Advanced_win.Add(self.Checkbox_win, 0,wx.ALL, border = 5)
+		self.Advanced_win.Add(self.Checkbox_win, 0, wx.ALL, border = 5)
 		self.panel_win.SetSizer(self.Advanced_win)
-		
-		#~ self.win.Show(False)
-		
-	#<--DAS ADVANCED FENSTER 
+		#<--DAS ADVANCED FENSTER 
 
-
-		
-		
-		#Schriftgroese und art deffinieren #Comic Sans MS
-		#~ self.font1 = wx.Font(19, wx.SWISS, wx.ITALIC, wx.NORMAL, False, u'Comic Sans MS')
-		#~ self.font2 = wx.Font(20, wx.SWISS, wx.NORMAL, wx.BOLD, False, u'Comic Sans MS')
-		#~ self.font3 = wx.Font(15, wx.SWISS, wx.NORMAL, wx.NORMAL, False, u'Comic Sans MS')
-		
-		#Schriftgroese und art deffinieren #NiX
+		#Schriftgroese und art deffinieren 
 		self.font1 = wx.Font(19, wx.SWISS, wx.ITALIC, wx.NORMAL, False)
 		self.font2 = wx.Font(17, wx.SWISS, wx.NORMAL, wx.BOLD, False)
 		self.font3 = wx.Font(15, wx.SWISS, wx.NORMAL, wx.NORMAL, False)
@@ -167,8 +137,8 @@ class gui(wx.Frame):
 		#DIE EIGENTLICHE GUI-->
 		
 		#Der Text ueber dem Textfeld und das Textfeld
-		self.UrlText=wx.StaticText(self.panel, -1, _("Youtube Urls (seperated with spaces):"))
-		self.Url = wx.TextCtrl(self.panel, -1, "", style=wx.TE_PROCESS_ENTER)
+		self.UrlText = wx.StaticText(self.panel, -1, _("Youtube Urls (seperated with spaces):"))
+		self.Url = wx.TextCtrl(self.panel, -1, "", style = wx.TE_PROCESS_ENTER)
 		self.Url.SetFont(self.font1)
 		self.Url.SetFocus()
 		#Dass wenn man ENTER drueckt der Download startet
@@ -178,16 +148,10 @@ class gui(wx.Frame):
 		self.Gauge = wx.Gauge(self.panel, -1, 100, size=(20, 165), style=wx.GA_VERTICAL)
 		
 		#Checklist
-		self.mylist=['.flv','.3gp','.mp4','.mp4 (720p)','.mp4 (1080p)','(.webm)']
-		self.DType=wx.ListBox(self.panel, -1, (-1,-1), (120,60), self.mylist, wx.LB_SINGLE)
+		self.mylist = ['.flv', '.3gp', '.mp4', '.mp4 (720p)', '.mp4 (1080p)', '(.webm)']
+		self.DType = wx.ListBox(self.panel, -1, (-1, -1), (120, 60), self.mylist, wx.LB_SINGLE)
 		self.DType.SetSelection(3)
 		self.Bind(wx.EVT_LISTBOX, self.doListBox, self.DType)
-		
-		#~ self.mylist2=['.saft','.pla','.dumm','.moin (720p)','.oha (1080p)','.webm']
-		#~ self.DType2=wx.ListBox(self.panel, -1, (-1,-1), (120,60), self.mylist2, wx.LB_SINGLE)
-		#~ self.DType2.SetSelection(3)
-		#~ self.Bind(wx.EVT_LISTBOX, self.doListBox, self.DType2)
-		
 		
 		#Advanced-Button
 		self.ConvertBox = wx.CheckBox ( self.panel, -1, _('Convert to mp3'))
@@ -195,13 +159,13 @@ class gui(wx.Frame):
 		self.Bind(wx.EVT_BUTTON, self.doAdvanced, self.AdvancedBox)
 		
 		#Dieverse Knoepfe+was sie passiert wenn sie gedrueckt werden
-		self.DButton=wx.Button(self.panel, -1, _("Download"), size=(140,80))
+		self.DButton = wx.Button(self.panel, -1, _("Download"), size = (140, 80))
 		self.DButton.SetFont(self.font2)
 		self.Bind(wx.EVT_BUTTON, self.doDownload, self.DButton)		
-		self.RButton=wx.Button(self.panel, -1, _("Reset"), size=(70,35))
+		self.RButton = wx.Button(self.panel, -1, _("Reset"), size = (70, 35))
 		self.RButton.SetFont(self.font3)
 		self.Bind(wx.EVT_BUTTON, self.doReset, self.RButton)		
-		self.CButton=wx.Button(self.panel, -1, _("Close"), size=(70,35))
+		self.CButton = wx.Button(self.panel, -1, _("Close"), size = (70, 35))
 		self.CButton.SetFont(self.font3)
 		self.Bind(wx.EVT_BUTTON, self.doClose, self.CButton)
 
@@ -210,22 +174,20 @@ class gui(wx.Frame):
 	
 		#Reset/Close Buttons
 		self.Button = wx.BoxSizer(wx.VERTICAL)
-		self.Button.Add(self.RButton, 0,wx.ALL, border = 5)
-		self.Button.Add(self.CButton, 0,wx.ALL, border = 5)
+		self.Button.Add(self.RButton, 0, wx.ALL, border = 5)
+		self.Button.Add(self.CButton, 0, wx.ALL, border = 5)
 		
 		#CheckList+CheckBox
 		self.Check = wx.BoxSizer(wx.VERTICAL)
-		self.Check.Add(self.ConvertBox, 0,wx.TOP, border = -7)
-		self.Check.Add(self.DType, 1,wx.ALL|wx.EXPAND, border = 5)
-
+		self.Check.Add(self.ConvertBox, 0, wx.TOP, border = -7)
+		self.Check.Add(self.DType, 1, wx.ALL|wx.EXPAND, border = 5)
 
 		#List+DownloadButton
 		self.Bottom = wx.BoxSizer()
-		self.Bottom.Add(self.Check, 1,wx.ALL|wx.EXPAND, border = 5)
-		self.Bottom.Add(self.DButton, 1,wx.ALL, border = 5)
-		self.Bottom.Add(self.Button,0, wx.ALL|wx.EXPAND, border = 0)
+		self.Bottom.Add(self.Check, 1, wx.ALL|wx.EXPAND, border = 5)
+		self.Bottom.Add(self.DButton, 1, wx.ALL, border = 5)
+		self.Bottom.Add(self.Button, 0, wx.ALL|wx.EXPAND, border = 0)
 
-		
 		#Die Uberschrift und die Advancedcheckbox
 		self.Top = wx.BoxSizer()
 		self.Top.Add(self.UrlText, 0, wx.TOP|wx.LEFT, border = 5)
@@ -237,7 +199,6 @@ class gui(wx.Frame):
 		self.UrlBox.Add(self.Url, 0, wx.ALL|wx.EXPAND, border = 5)
 		self.UrlBox.Add(self.Bottom, 1, wx.EXPAND|wx.ALL, border = 0)
 		
-		
 		#Gauge
 		self.MainSizer = wx.BoxSizer()
 		self.MainSizer.Add(self.UrlBox, 1, wx.EXPAND|wx.ALL, border = 0)
@@ -245,11 +206,10 @@ class gui(wx.Frame):
 		
 		#StatusBar
 		self.SBSizer = wx.BoxSizer(wx.VERTICAL)
-		self.SBSizer.Add(self.MainSizer, 1,wx.ALL|wx.EXPAND, border = 5)
-		self.SBSizer.Add(self.sb, 0,wx.EXPAND, border = 0)
+		self.SBSizer.Add(self.MainSizer, 1, wx.ALL|wx.EXPAND, border = 5)
+		self.SBSizer.Add(self.sb, 0, wx.EXPAND, border = 0)
 		
 		self.panel.SetSizer(self.SBSizer)
-		
 		
 	#alles zuruecksetzen
 	def doReset(self, event):
@@ -258,7 +218,6 @@ class gui(wx.Frame):
 		self.Url.SetFocus()
 		self.ConvertBox.SetValue(0)
 		self.ConvertBox.Enable(True)
-		
 		
 	#Wenn 3gp, webm oder flv wird die Convert Checkbox ausgegraut und Deaktiviert
 	def doListBox(self, event):
@@ -354,39 +313,36 @@ class gui(wx.Frame):
 			args = self.Url.GetValue().split(' ')
 			self.args = args
 			
-			
 			if self.RegexBox_win.GetValue():
 				self.doRegex()
 			else:
 				#Den eigentlichen Download starten
 				c = self.Youtube(self.args, self.usehd,self.usefullhd,self.use3gp,self.useflv,self.convert,self.useweb, self.useurl, self.usewebm, self.usefmt, self.bestqual)	
 				c.start()
-		
+
 				#die Box leeren
 				self.Url.SetValue("")
 				self.Url.SetFocus()
-			
-			
+
 	def doRegex(self):
 		#Die Urls auf YoutubeUrls prufen
-		self.rg = re.compile('http:\\/\\/www\\.youtube\\.com\\/watch\\?v=[0-9 a-z A-Z _-]{11,}',re.IGNORECASE|re.DOTALL)
+		self.rg = re.compile('http:\\/\\/www\\.youtube\\.com\\/watch\\?v=[0-9 a-z A-Z _-]{11,}', re.IGNORECASE|re.DOTALL)
 		self.q = 0
 		self.u = 0
 		for reg in self.args:			
 			self.m = self.rg.match(reg)
 			self.u = self.u +1
 			if self.m:
-				modules.log().info("'"+reg+"' is eine YouTubeUrl")
+				modules.log().info("'" + reg + "' is eine YouTubeUrl")
 				self.q = self.q + 1
 			else:
-				modules.log().info( "'"+reg+"' is NOT a YouTubeUrl")
+				modules.log().info( "'" + reg + "' is NOT a YouTubeUrl")
 		
 		if self.q == self.u:
 			#Den eigentlichen Download starten
-			c = self.Youtube(self.args, self.usehd,self.usefullhd,self.use3gp,self.useflv,self.convert,self.useweb, self.useurl, self.usewebm, self.usefmt, self.bestqual)	
+			c = self.Youtube(self.args, self.usehd, self.usefullhd, self.use3gp, self.useflv, self.convert, self.useweb, self.useurl, self.usewebm, self.usefmt, self.bestqual)
 			c.start()
-			
-			
+
 			self.Url.SetValue("")
 			self.Url.SetFocus()
 		else:
@@ -395,17 +351,12 @@ class gui(wx.Frame):
 	
 	def doDType(self,event):
 		if self.Advancedfmt_win.GetValue():
-			
 			# 5 mal das erste element loeschen 
 			for d in range(0,6):
 				self.DType.Delete(0)
 			
-			#vorerst			
-			#~ self.InsertList=['.flv (320x180)','.3gp (174x144)','.mp4 (480x270)','.mp4 (1280x720)','.mp4 (1920x1080)','.webm (640x360)', '.webm (1280x720)', '.mp4 (426x240)', '.mp4 (640x360)', '.mp4 (854x480)', '.mp4 (4096x2304)', '.3gp (174x144)']
-			#optimal...
-			self.InsertList=['.flv (320x180)','.3gp (174x144)', '.3gp (174x144)','.(webm (640x360))', '.(webm (1280x720))', '.mp4 (426x240)', '.mp4 (480x270)', '.mp4 (640x360)', '.mp4 (854x480)','.mp4 (1280x720)','.mp4 (1920x1080)', '.mp4 (4096x2304)']
+			self.InsertList=['.flv (320x180)', '.3gp (174x144)', '.3gp (174x144)', '.(webm (640x360))', '.(webm (1280x720))', '.mp4 (426x240)', '.mp4 (480x270)', '.mp4 (640x360)', '.mp4 (854x480)', '.mp4 (1280x720)', '.mp4 (1920x1080)', '.mp4 (4096x2304)']
 			self.DType.InsertItems(self.InsertList,0)
-			
 		else:
 			for d in range(0,12):
 				self.DType.Delete(0)
@@ -425,7 +376,6 @@ class gui(wx.Frame):
 			
 	def doFont(self, event):
 		if modules.cfg.FontBox == True:
-
 			#Schriftgroese und Art deffinieren #NiX
 			self.font1 = wx.Font(19, wx.SWISS, wx.ITALIC, wx.NORMAL, False)
 			self.font2 = wx.Font(17, wx.SWISS, wx.NORMAL, wx.BOLD, False)
@@ -448,8 +398,8 @@ class gui(wx.Frame):
 		self.pfad = event.pfad
 		self.title = event.title
 		#Tagger
-		App_tagger=wx.PySimpleApp()
-		Frame_tagger=modules.tagger(None,-1, self.pfad, self.title)
+		App_tagger = wx.PySimpleApp()
+		Frame_tagger = modules.tagger(None, -1, self.pfad, self.title)
 		Frame_tagger.Center()
 		Frame_tagger.Show()
 		App_tagger.MainLoop()
