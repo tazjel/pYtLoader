@@ -255,7 +255,7 @@ class Youtube(threading.Thread):
 					modules.log().info(_("Only *.mp4 can be converted."))
 				
 				#Falls Datei schon vorhanden ein teil den Unix-Timestamps als Dateinamen drannhaengen
-				if os.path.isfile(self.dir + '\\' + self.title + self.suffix) :
+				if  (not modules.cfg.iswin and os.path.isfile(self.dir + '/' + self.title + self.suffix)) or (modules.cfg.iswin and os.path.isfile(self.dir + '\\' + self.title + self.suffix)) :
 					timestamp = str(time.time())[0:10]
 					
 					if modules.cfg.iswin:
