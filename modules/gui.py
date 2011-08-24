@@ -110,7 +110,7 @@ class tagger(wx.MiniFrame):
 class gui(wx.Frame):
 	def __init__(self,parent,id, windows_size_x, windows_size_y, _Youtube):		
 		self.Youtube = _Youtube
-		wx.Frame.__init__(self, parent, id, "Youtube-Downloader", size=(windows_size_x,windows_size_y))
+		wx.Frame.__init__(self, parent, id, "%s %s" %(modules.cfg.name, modules.cfg.version), size=(windows_size_x,windows_size_y))
 		self.panel=wx.Panel(self)
 		self.showAdvancedWindow = False
 		

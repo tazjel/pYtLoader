@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 ######################
-#v93ytLoader-v2.6
+#pYtLoader.py
 ######################
 #v93.eu#
 ######################
@@ -20,7 +20,7 @@ from optparse import OptionGroup
 import modules
 import modules.cfg
 
-trans = gettext.translation("v93ytLoader", "locale", ["de"]) 
+trans = gettext.translation("pYtLoader", "locale", ["de"]) 
 trans.install(unicode=True)
 
 
@@ -32,7 +32,7 @@ parser.usage = "%prog [options] YouTubeUrl [YTUrl] ..."
 parser.description = _("This is a easy program to download YouTube videos and extract the audio to mp3. (with shell or gui) (for mp3 lame and faad2 is required)")
 parser.epilog = _("This program is biodegradable.")
 
-group = OptionGroup(parser, _("Normal options"), _("Example for a fullHD-download and mp3 conversion:\n'YouTubeDownloader -c --fullhd http://www.youtube.com/watch?v=uxk4hIX3Kn4'."))
+group = OptionGroup(parser, _("Normal options"), _("Example for a fullHD-download and mp3 conversion:\n'./pYtLoader.py -c --fullhd http://www.youtube.com/watch?v=uxk4hIX3Kn4'."))
 advanced_group = OptionGroup(parser, _("advanced options"), _("Options, for non normal people."))
 group.add_option("-c", "--convert", dest="convert", help=_("Convert video to (can be used only with mp4)."), default=False, action="store_true")
 group.add_option("", "--hd", dest="usehd", help=_("Download in high quality (720p), if available."), default=False, action="store_true")

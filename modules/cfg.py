@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-name= "v93ytLoader"
-version = "2.6"
+name= "pYtLoader"
+version = "2.7"
 
 ##Don't edit here!!!-->
 ##ob wx-widgets vorhanden sind?
@@ -16,4 +16,3 @@ TaggerBox = False
 FontBox = False
 ##fur den event um den tagger zu offnen
 wxEVT_THREAD_COM = False
-
