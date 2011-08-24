@@ -1,66 +1,34 @@
-LIESMICH DATEI v0.1.1
-für YouTubeDownloader v2.0-v2.4
-Bitte Lesen:
-====v93.eu====
+===pYtLoader.py===
 
-Der YouTubeDownloader enthält Dateien (lame, wget, faad) die unter der 
-GNU General Public License stehen.
+The pYtLoader is a simple python script to download YouTube videos, and if needed save and tag the audio stream as mp3.
+
+The pYtLoader uses software under the GPL (lame, faad2) so checkout:
 http://www.gnu.org/licenses/gpl.txt
 
-====v93.eu====
+This software is provided "AS IS", without any express or implied warranty in any kind.
 
-Der Autor ünimmt KEINE Haftung für Schäden, die eventuell durch diese 
-Software entstanden sind.
-Der YouTubeDownloader wurde für Schulungszwecke geschreiben, und darf NUR 
-für diese verwendet werden.
+The pYtLoader or any module...
+...must NOT used for commercial products.
+...must modified/adjusted/edited/copied/saved/deleted... etc. (do what you want to do)
+...must be cleaned from spelling faults.
 
-====v93.eu====
+1) Requirements:
+	python2
+	wxpython (optimal for gui)
+	lame
+	faad2
 
-Der YouTubeDownloader ...
-....darf NICHT für kommerzielle Zwecke ohne Einverstänis
-des Autors verwendet werden.
-...darf verändert/angepasst/bearbeitet/kopiert/gespeichert/gelöscht werden.
-...darf verfielfältigt/verbreitet/gedruckt und öffentlich zugänglich gemacht werden.
-...darf von Rechtschreibfehlern bereinigt werden.
+2) How to use:
+	2.1) GUI:
+		Doubleclick on pYtLoader.py or execlude ./pYtLoader.py in a shell.
+	2.3) Shell:
+		Type in ./pYtLoader.py --help to see a complete list of arguments.
+		i.e.:
+			./pYtLoader -c --fullhd http://www.youtube.com/watch?v=uxk4hIX3Kn4
+			to download in fullHD and convert the audio stream to mp3.
 
-====v93.eu====
+3) Where are the files?!:
+	~/YouTube/
 
-Abgesehen davon, dass dises Programm selbsterklärend ist....
-
-Anleitung für Dummies:
-1. Alles aus dem Zip-Archiv in einen belibigen ordner entpacken.
-2. Doppelklick auf die YouTubeDownloader.exe um die GUI zu starten
-3. Video-URL per Kopieren und Einfügen (z.B. aus dem Browser) in die Textbox einfügen.
-4. In der Liste unten das Format und die Qualität auswählen 
-	(falls die gewünschte qualität nicht vorhanden ist wird mit niedrigerer Qualität heruntergeladen)
-	(also wenn man 1080p auswählt und es nur 720p gibt wird 720p heruntergeladen)
-5. In der Checkbox auswählen ob dann in mp3 (nur der Ton) convertiert werden soll. (geht NICHT bei flv und 3gp)
-6. Auf "Download" drücken.
-7. Warten.
-8. Das Video/mp3 befindet sich dann
-	a) Windows XP: 		Eigene Dateien\YouTube\
-	b) Windows Vista:	Eigene Dateien\Dokumente\YouTube <---(noch nicht überprüft)
-	c) Windows 7:		Biblioteken\Dokumente\YouTube\		(Eigene Dokumente\YouTube\)
-
-9. Fertig
-
-====v93.eu====
-
-
-Anleitung für die Commandozeile:
-1. Alle Funktionen die über die GUI verfügbar sind, sind auch in der
-	commandozeile verfügbar.
-2. Parameter:
-  -h, --help        show this help message and exit
-  --hd              Video in hoher Qualitaet (720p) herunterladen, wenn /*help/h funktioniert leider nicht immer*/
-                    moeglich
-  --fullhd          Video in hoher Qualitaet (1080p) herunterladen, wenn
-                    moeglich
-  -3, --3gp         Video als 3gp fuer Mobilfunktelefon herunterladen
-  -f, --flv         Video als flv herunterladen (kann nicht mit -c/--convert
-                    benutzt werden)
-  -c, --convert     Video als mp3 konvertieren
-  -w, --webbrowser  Video Url im Webbrowser oeffnen (kann nicht mit
-                    -c/--convert benutzt werden)
-
-3. SO kannst du z.B. dieses Programm in deines integrieren, falls du solche Funktionen brauchst.
+====
+v93.eu
