@@ -89,9 +89,9 @@ class tagger(wx.MiniFrame):
 			self.autofill = True
 			
 class gui(wx.Frame):
-	def __init__(self, parent, id, windows_size_x, windows_size_y, _Youtube):		
+	def __init__(self, parent, id, _Youtube):		
 		self.Youtube = _Youtube
-		wx.Frame.__init__(self, parent, id, "%s %s" %(modules.cfg.name, modules.cfg.version), size=(windows_size_x, windows_size_y))
+		wx.Frame.__init__(self, parent, id, "%s %s" %(modules.cfg.name, modules.cfg.version), size=(modules.cfg.windows_size_x, modules.cfg.windows_size_y))
 		self.panel = wx.Panel(self)
 		self.showAdvancedWindow = False
 		
@@ -102,7 +102,7 @@ class gui(wx.Frame):
 #EVENT
 		
 	#DAS ADVANCED FENSTER -->
-		self.win = wx.MiniFrame(self, -1, _("Advanced"), wx.Point(100,100) , size = (windows_size_x, windows_size_y), style = wx.DEFAULT_MINIFRAME_STYLE)
+		self.win = wx.MiniFrame(self, -1, _("Advanced"), wx.Point(100,100) , size = (modules.cfg.windows_size_x_win, modules.cfg.windows_size_y_win), style = wx.DEFAULT_MINIFRAME_STYLE)
 		self.win.Show(False)
 
 		self.panel_win= wx.Panel(self.win)
@@ -116,12 +116,19 @@ class gui(wx.Frame):
 		self.Font_win = wx.CheckBox ( self.panel_win, -1, _('Enable "Comic Sans MS" as Font'))
 		self.Bind(wx.EVT_CHECKBOX, self.doFont, self.Font_win)
 		
+		#Language
+		self.mylist = ['Deutsch', 'English']
+		self.LanguageList_win = wx.ListBox(self.panel_win, -1, (-1, -1), (120, 60), self.mylist, wx.LB_SINGLE)
+		self.LanguageList_win.SetSelection(0)
+		self.Bind(wx.EVT_LISTBOX, self.doLanguageBox, self.LanguageList_win)
+		
 		#Positionierung mit sizers
 		self.Checkbox_win = wx.BoxSizer(wx.VERTICAL)
 		self.Checkbox_win.Add(self.RegexBox_win, 0, wx.ALL, border = 5)
 		self.Checkbox_win.Add(self.Advancedfmt_win, 0, wx.ALL, border = 5)
 		self.Checkbox_win.Add(self.Tagger_win, 0, wx.ALL, border = 5)
 		self.Checkbox_win.Add(self.Font_win, 0, wx.ALL, border = 5)
+		self.Checkbox_win.Add(self.LanguageList_win, 0, wx.ALL, border = 5)
 		self.Checkbox_win.Add(self.CButton_win, 0, wx.LEFT, border = 10)
 		
 		self.Advanced_win = wx.BoxSizer()
@@ -392,6 +399,18 @@ class gui(wx.Frame):
 		self.DButton.SetFont(self.font2)
 		self.RButton.SetFont(self.font3)
 		self.CButton.SetFont(self.font3)
+		
+	def doLanguageBox(self, event):
+		if hasattr(modules.language, 'myLocal'):
+			del modules.language.myLocal
+				
+		if (self.LanguageList_win.GetSelection() == 0):
+			modules.language.myLocal = wx.Locale(wx.LANGUAGE_GERMAN, wx.LOCALE_LOAD_DEFAULT | wx.LOCALE_CONV_ENCODING)
+		else:
+			modules.language.myLocal = wx.Locale(wx.LANGUAGE_ENGLISH_US, wx.LOCALE_LOAD_DEFAULT | wx.LOCALE_CONV_ENCODING)
+			
+		modules.language.myLocal.AddCatalog('pYtLoader')
+		modules.language.setLanguage()
 
 	#Wenn event  kommt das taggerfenster starten, mit event.* werden nochtitel und pfad ubergeben.
 	def OnThreadCommunicationEvent(self, event):

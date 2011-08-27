@@ -5,11 +5,6 @@ import modules.cfg
 import modules.log
 
 
-try:
-	import wx
-except ImportError:
-	modules.log().info(_("No wx-widgets found. (engine)"))
-
 class Youtube(threading.Thread):
 	def __init__(self, args,usehd,usefullhd,use3gp,useflv,convert,useweb, useurl, usewebm, usefmt,bestqual):
 		threading.Thread.__init__(self)        

@@ -12,14 +12,12 @@
 ######################
 #TOBO:id3tag: "http://img.youtube.com/vi/"..video_id.."/default.jpg"
 
-import urllib, webbrowser, os, tempfile, time, threading, re, sys, gettext
+import urllib, webbrowser, os, tempfile, time, threading, re, sys
 from optparse import OptionParser
 from optparse import OptionGroup
 import modules
 import modules.cfg
-
-trans = gettext.translation("pYtLoader", "locale", ["de"]) 
-trans.install(unicode=True)
+import modules.language
 
 #leerzeile
 print ""
@@ -92,12 +90,17 @@ if sys.platform == "win32":
 else:
 	modules.log().info(_("We are on a Linux (or similar) operating system"))
 
+#Die Fenstergrößen setzen
 if modules.cfg.iswin:
-	windows_size_x = 395
-	windows_size_y = 235
+	modules.cfg.windows_size_x = 395
+	modules.cfg.windows_size_y = 235
+	modules.cfg.windows_size_x_win = 240
+	modules.cfg.windows_size_y_win = 310
 else:
-	windows_size_x = 455
-	windows_size_y = 200
+	modules.cfg.windows_size_x = 455
+	modules.cfg.windows_size_y = 200
+	modules.cfg.windows_size_x_win = 300
+	modules.cfg.windows_size_y_win = 275
 
 #UserAgent andern, Da YouTube = Google --> mag keine Bots auf seinen Webseiten
 class UserAgent(urllib.FancyURLopener):
@@ -113,18 +116,15 @@ if __name__=='__main__':
 		
 	#ohne aurgumente --> gui starten
 	else:
-		try:
-			import wx
-		except ImportError:
-			modules.cfg.iswx = False
-			#von shell starten
-			modules.log().info(_("No wx-widgets found."))
-
 		if modules.cfg.iswx:
+			import wx
 			import modules.gui
 			app=wx.PySimpleApp()
-			modules.cfg.frame=modules.gui(None, -1, windows_size_x, windows_size_y, modules.Youtube)
+			modules.cfg.frame=modules.gui(None, -1, modules.Youtube)
 			modules.cfg.frame.Center()
-			modules.cfg.frame.SetMinSize((windows_size_x, windows_size_y))
+			modules.cfg.frame.SetMinSize((modules.cfg.windows_size_x, modules.cfg.windows_size_y))
 			modules.cfg.frame.Show()
 			app.MainLoop()
+		else:
+			#von shell starten
+			modules.log().info(_("No wx-widgets found. Try to use --help for cmd help."))
