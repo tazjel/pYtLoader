@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import re, wx, time, os
+import re, wx, time, os, ConfigParser
 import modules.log
 import modules.cfg
 import modules.ID3
@@ -89,7 +89,7 @@ class tagger(wx.MiniFrame):
 			self.autofill = True
 			
 class gui(wx.Frame):
-	def __init__(self, parent, id, _Youtube):		
+	def __init__(self, parent, id, _Youtube):
 		self.Youtube = _Youtube
 		wx.Frame.__init__(self, parent, id, "%s %s" %(modules.cfg.name, modules.cfg.version), size=(modules.cfg.windows_size_x, modules.cfg.windows_size_y))
 		self.panel = wx.Panel(self)
@@ -217,7 +217,7 @@ class gui(wx.Frame):
 		self.SBSizer.Add(self.sb, 0, wx.EXPAND, border = 0)
 		
 		self.panel.SetSizer(self.SBSizer)
-		
+
 	#alles zuruecksetzen
 	def doReset(self, event):
 		self.DType.SetSelection(3)
@@ -240,18 +240,53 @@ class gui(wx.Frame):
 	def doHide(self, event):
 		self.win.Show(False)
 		self.showAdvancedWindow = False
+		self.writeConfigFile()
+
+	def writeConfigFile(self):
+		config = ConfigParser.RawConfigParser()
+		config.add_section("Advanced")
+		config.set("Advanced", "regex", self.RegexBox_win.GetValue())
+		config.set("Advanced", "advanced_fmt", self.Advancedfmt_win.GetValue())
+		config.set("Advanced", "tagger", self.Tagger_win.GetValue())
+		config.set("Advanced", "comic_font", self.Font_win.GetValue())
+		config.set("Advanced", "language", self.LanguageList_win.GetSelection()) #TODO: Nicht die Nummer sondern Sprachcode speichern
 		
+		with open('pYtLoader.ini', 'wb') as configfile:
+			config.write(configfile)
+	
+	def readConfigFile(self):
+		config = ConfigParser.RawConfigParser()
+		config.read('pYtLoader.ini')
+		try:
+			self.RegexBox_win.SetValue(config.getboolean("Advanced", "regex"))
+			self.Advancedfmt_win.SetValue(config.getboolean("Advanced", "advanced_fmt"))
+			self.Tagger_win.SetValue(config.getboolean("Advanced", "tagger"))
+			self.Font_win.SetValue(config.getboolean("Advanced", "comic_font"))
+			self.LanguageList_win.SetSelection(config.getboolean("Advanced", "language"))
+		except ConfigParser.NoSectionError:
+			modules.log().info(_("Could not find a correct config file."))
+		except ConfigParser.NoOptionError:
+			modules.log().info(_("Some options in the config file are incorrect."))
+		except:
+			modules.log().info(_("Unexpected error by reading the config file."))
+		else:
+			self.doDType(None)
+			self.doFont(None)
+			self.doLanguageBox(None)
+
 	def doAdvanced(self, event):
 		if self.showAdvancedWindow:
 			self.win.Show(False)
 			self.showAdvancedWindow = False
+			self.writeConfigFile()
 		else:
 			self.win.Show(True)
 			self.showAdvancedWindow = True
 		
+
 	def doDownload(self, event):
 		if self.Url.GetValue() == "":
-			self.SetStatusText(_("Please enter YouTube-Url(s) in the textbox."))
+			self.sb.SetStatusText(_("Please enter YouTube-Url(s) in the textbox."))
 		else:
 			self.usehd =  False
 			self.usefullhd =  False
@@ -264,7 +299,7 @@ class gui(wx.Frame):
 			self.usewebm =  False
 			self.usefmt =  False
 			self.bestqual = False
-			
+
 			#Wenn der haken gesetzt ist...
 			if self.Advancedfmt_win.GetValue():
 				if self.DType.GetSelection() == 0:
@@ -354,8 +389,8 @@ class gui(wx.Frame):
 			self.Url.SetFocus()
 		else:
 			self.Url.SetFocus()
-			modules.cfg.frame.SetStatusText_(("One or more Urls are incorrect."))
-	
+			self.sb.SetStatusText(_("One or more Urls are incorrect."))
+
 	def doDType(self,event):
 		if self.Advancedfmt_win.GetValue():
 			# 5 mal das erste element loeschen 
@@ -382,19 +417,17 @@ class gui(wx.Frame):
 			self.doListBox("dummy")
 			
 	def doFont(self, event):
-		if modules.cfg.FontBox == True:
+		if self.Font_win.GetValue():
 			#Schriftgroese und Art deffinieren #NiX
 			self.font1 = wx.Font(19, wx.SWISS, wx.ITALIC, wx.NORMAL, False)
 			self.font2 = wx.Font(17, wx.SWISS, wx.NORMAL, wx.BOLD, False)
 			self.font3 = wx.Font(15, wx.SWISS, wx.NORMAL, wx.NORMAL, False)
-			modules.cfg.FontBox = False
 		else:
 			#Schriftgroese und Art deffinieren #Comic Sans MS
 			self.font1 = wx.Font(19, wx.SWISS, wx.ITALIC, wx.NORMAL, False, u'Comic Sans MS')
 			self.font2 = wx.Font(20, wx.SWISS, wx.NORMAL, wx.BOLD, False, u'Comic Sans MS')
 			self.font3 = wx.Font(15, wx.SWISS, wx.NORMAL, wx.NORMAL, False, u'Comic Sans MS')
-			modules.cfg.FontBox = True
-			
+
 		self.Url.SetFont(self.font1)
 		self.DButton.SetFont(self.font2)
 		self.RButton.SetFont(self.font3)

@@ -12,7 +12,5 @@ iswin= False
 frame = None
 ##wird der Tagger danach geoffnet?
 TaggerBox = False
-##was fur eine schrift wir gerade haben
-FontBox = False
 ##fur den event um den tagger zu offnen
 wxEVT_THREAD_COM = False

@@ -124,6 +124,8 @@ if __name__=='__main__':
 			modules.cfg.frame.Center()
 			modules.cfg.frame.SetMinSize((modules.cfg.windows_size_x, modules.cfg.windows_size_y))
 			modules.cfg.frame.Show()
+			#Config File auslesen
+			modules.cfg.frame.readConfigFile()
 			app.MainLoop()
 		else:
 			#von shell starten
