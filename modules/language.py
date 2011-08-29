@@ -16,7 +16,7 @@ if modules.cfg.iswx:
 
 	wx.Locale_AddCatalogLookupPathPrefix('./locale')
 	locale.setlocale(locale.LC_ALL, '')
-	
+
 	localVar = wx.Locale(wx.LANGUAGE_DEFAULT, wx.LOCALE_LOAD_DEFAULT | wx.LOCALE_CONV_ENCODING)
 	localVar.AddCatalog('pYtLoader')
 else:
@@ -34,17 +34,17 @@ def setLanguage():
 	#~ f.Text_Titel_tagger.SetLabel(_("Titel:"))
 	#~ f.Text_Album_tagger.SetLabel(_("Album:"))
 	#~ f.Text_Interpret_tagger.SetLabel(_("Interpret:"))
-	
+
 	#~ f.Titel_tagger.SetToolTipString(_("The titel of the song."))
 	#~ f.Album_tagger.SetToolTipString(_("The Album, on witch this song ws published."))
 	#~ f.Interpret_tagger.SetToolTipString(_("The band/The singer/The DJ who \nhas published this Song on a album."))
-	
+
 	f.CButton_win.SetLabel(_("Close"))
 	f.RegexBox_win.SetLabel(_('Check YouTube-Urls.'))
 	f.Advancedfmt_win.SetLabel(_('More resolutions'))
 	f.Tagger_win.SetLabel(_('Activate mp3-Tagger. (BETA)'))
 	f.Font_win.SetLabel(_('Enable "Comic Sans MS" as Font'))
-	
+
 	f.UrlText.SetLabel( _("Youtube Urls (seperated with spaces):"))
 	f.ConvertBox.SetLabel(_('Convert to mp3'))
 	f.AdvancedBox.SetLabel(_('Advanced'))

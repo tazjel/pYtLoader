@@ -15,6 +15,6 @@ class log:
 
 	def info(self, text):
 		print _("%s %s") %(time.strftime("[%H:%M:%S]", time.localtime()), text)
-	
+
 	def error(self, text):
 		print _("%s ERROR: %s") %(time.strftime("[%H:%M:%S]", time.localtime()), text)

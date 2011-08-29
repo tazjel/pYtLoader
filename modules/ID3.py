@@ -203,7 +203,7 @@ class ID3:
 
             self.file = file
             self.can_reopen = 0
-            
+
 	self.d = {}
 	self.as_tuple = as_tuple
 	self.delete_tag = 0
@@ -211,7 +211,7 @@ class ID3:
 	self.modified = 0
 	self.has_tag = 0
 	self.had_tag = 0
-        
+
 	try:
 	    self.file.seek(-128, 2)
 
@@ -279,7 +279,7 @@ class ID3:
         self.track = None
 	self.genre = 255 # 'unknown', not 'blues'
         self.setup_dict()
-        
+
     def tupleize(self, s):
         if self.as_tuple and type(s) is not types.TupleType:
             return (s,)

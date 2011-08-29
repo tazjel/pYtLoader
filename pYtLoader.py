@@ -113,7 +113,7 @@ if __name__=='__main__':
 	if (usefmt == '0') or  args:
 		c= modules.Youtube(args, usehd, usefullhd, use3gp, useflv, convert, useweb, useurl, usewebm, usefmt, bestqual)
 		c.start()
-		
+
 	#ohne aurgumente --> gui starten
 	else:
 		if modules.cfg.iswx:
@@ -123,9 +123,9 @@ if __name__=='__main__':
 			modules.cfg.frame=modules.gui(None, -1, modules.Youtube)
 			modules.cfg.frame.Center()
 			modules.cfg.frame.SetMinSize((modules.cfg.windows_size_x, modules.cfg.windows_size_y))
-			modules.cfg.frame.Show()
 			#Config File auslesen
 			modules.cfg.frame.readConfigFile()
+			modules.cfg.frame.Show()
 			app.MainLoop()
 		else:
 			#von shell starten

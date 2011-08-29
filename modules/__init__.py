@@ -5,7 +5,7 @@ try:
 	import wx
 except ImportError:
 	cfg.iswx = False
-	
+
 from engine import Youtube
 from log import log
 from ID3 import *
