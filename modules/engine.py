@@ -4,6 +4,8 @@ import urllib,webbrowser,os,tempfile,time,threading,sys
 import modules.cfg
 import modules.log
 
+if modules.cfg.iswx:
+	import wx
 
 class Youtube(threading.Thread):
 	def __init__(self, args, usehd, usefullhd, use3gp, useflv, convert, useweb, useurl, usewebm, usefmt, bestqual):
@@ -247,28 +249,28 @@ class Youtube(threading.Thread):
 						wx.CallAfter(self.TextAfter, _("Converted!"))
 				elif self.convert:
 					modules.log().info(_("Only *.mp4 can be converted."))
-
-				#Falls Datei schon vorhanden ein teil den Unix-Timestamps als Dateinamen drannhaengen
-				if  (not modules.cfg.iswin and os.path.isfile(self.dir + '/' + self.title + self.suffix)) or (modules.cfg.iswin and os.path.isfile(self.dir + '\\' + self.title + self.suffix)):
-					timestamp = str(time.time())[0:10]
-
-					if modules.cfg.iswin:
-						os.system('copy ' + tmp_vid + ' "' + self.dir + '\\' + self.title + "_new" + timestamp + self.suffix + '"')
-					else:
-						os.system('mv ' + tmp + ' "' + self.dir + '/' + self.title + "_new" + timestamp + self.suffix + '"')
-
-					modules.log().info(_("Video already exists."))
-					modules.log().info(_('Video will be moved to "%s/%s_new%s%s".') %(self.dir, self.title, timestamp, self.suffix))
-
-				#Wenn noch nicht vorhanden, die Tmp-Datei in das Speicher-Verzeichniss kopieren und in den Titel des
-				#Videos umbenennen
 				else:
-					if modules.cfg.iswin:
-						os.system('copy "' + tmp_vid + '" "' + self.dir + '\\' + self.title + self.suffix + '"')
-					else:
-						os.system('mv ' + tmp + ' "' + self.dir + '/' + self.title + self.suffix + '"')
+					#Falls Datei schon vorhanden ein teil den Unix-Timestamps als Dateinamen drannhaengen
+					if  (not modules.cfg.iswin and os.path.isfile(self.dir + '/' + self.title + self.suffix)) or (modules.cfg.iswin and os.path.isfile(self.dir + '\\' + self.title + self.suffix)):
+						timestamp = str(time.time())[0:10]
 
-					modules.log().info(_('"%s" moved to %s.') %(self.title, self.dir))
+						if modules.cfg.iswin:
+							os.system('copy ' + tmp_vid + ' "' + self.dir + '\\' + self.title + "_new" + timestamp + self.suffix + '"')
+						else:
+							os.system('mv ' + tmp + ' "' + self.dir + '/' + self.title + "_new" + timestamp + self.suffix + '"')
+
+						modules.log().info(_("Video already exists."))
+						modules.log().info(_('Video will be moved to "%s/%s_new%s%s".') %(self.dir, self.title, timestamp, self.suffix))
+
+					#Wenn noch nicht vorhanden, die Tmp-Datei in das Speicher-Verzeichniss kopieren und in den Titel des
+					#Videos umbenennen
+					else:
+						if modules.cfg.iswin:
+							os.system('copy "' + tmp_vid + '" "' + self.dir + '\\' + self.title + self.suffix + '"')
+						else:
+							os.system('mv ' + tmp + ' "' + self.dir + '/' + self.title + self.suffix + '"')
+
+						modules.log().info(_('"%s" moved to %s.') %(self.title, self.dir))
 
 	def dlProgress(self, count, blockSize, totalSize):
 		#Wenn das Video keine groese hat ist es nicht da :-)
