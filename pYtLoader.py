@@ -81,14 +81,13 @@ if  (usefmt == 0):
 	quit()
 
 modules.log().start()
-modules.log().info(_("logging the world"))
 
 #Wo bin ich gerade?
 if sys.platform == "win32":
 	modules.cfg.iswin = True
-	modules.log().info(_("We are on a Windows operating system"))
+	modules.log().info(_("We are on a Windows operating system."))
 else:
-	modules.log().info(_("We are on a Linux (or similar) operating system"))
+	modules.log().info(_("We are on a Linux (or similar) operating system."))
 
 #Die Fenstergrößen setzen
 if modules.cfg.iswin:

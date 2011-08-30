@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: v93ytLoader-v0.1\n"
-"POT-Creation-Date: 2011-08-16 19:25+Mitteleuropäische Sommerzeit\n"
+"POT-Creation-Date: 2011-08-30 22:40+CEST\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adrian Vetter <yt@v93.eu>\n"
 "Language-Team: Adrian Vetter <yt@v93.eu>\n"
@@ -12,255 +12,152 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: YouTubeDownloader-v2.6.py:32
-msgid "This is a easy program to download YouTube videos and extract the audio to mp3. (with shell or gui) (for mp3 lame and faad2 is required)"
-msgstr "Mit diesem Programm kann man ganz einfach (entweder per gui oder shell) Videos von YouTube herunterladen und den Audiostream zu mp3 extrahieren lassen (lame und faad2 benötigt)"
-
-#: YouTubeDownloader-v2.6.py:33
-msgid "This program is biodegradable."
-msgstr "Dieses Programm ist Biologisch abbaubar."
-
-#: YouTubeDownloader-v2.6.py:35
-msgid ""
-"Example for a fullHD-download and mp3 conversion:\n"
-"'YouTubeDownloader -c --fullhd http://www.youtube.com/watch?v=uxk4hIX3Kn4'."
-msgstr ""
-"Beispiel für fullHD-Download und mp3-konvertierung:\n"
-"'YouTubeDownloader -c --fullhd http://www.youtube.com/watch?v=uxk4hIX3Kn4'."
-
-#: YouTubeDownloader-v2.6.py:35
-msgid "Normal options"
-msgstr "Normale Optionen"
-
-#: YouTubeDownloader-v2.6.py:36
-msgid "Options, for non normal people."
-msgstr "Optionen, die ein normaler Mensch nicht braucht."
-
-#: YouTubeDownloader-v2.6.py:36
-msgid "advanced options"
-msgstr "Erweiterte Optionen"
-
-#: YouTubeDownloader-v2.6.py:37
-msgid "Convert video to (can be used only with mp4)."
-msgstr "Video als mp3 konvertieren (kann nur mit mp4 verwendet werden)."
-
-#: YouTubeDownloader-v2.6.py:38
-msgid "Download in high quality (720p), if available."
-msgstr "Video in hoher Qualität (720p) herunterladen, wenn verfügbar."
-
-#: YouTubeDownloader-v2.6.py:39
-msgid "Download in high quality (1080p), if available."
-msgstr "Video in hoher Qualität (1080p) herunterladen, wenn verfügbar."
-
-#: YouTubeDownloader-v2.6.py:40
-msgid "Download as 3gp for mobile phones video (MPEG-4)."
-msgstr "Video als 3gp für Mobilfunktelefon herunterladen (MPEG-4)."
-
-#: YouTubeDownloader-v2.6.py:41
-msgid "Download video as flv."
-msgstr "Video als flv herunterladen."
-
-#: YouTubeDownloader-v2.6.py:42
-#, fuzzy
-msgid "Download video in custom quality (-f 0 to show the fmt list; Without this option the best quality will be downloaded.)"
-msgstr "Video in bentzerdefinierter Qualität herunterladen (-f 0 um eine fmt Liste anzuzeigen; Ohne diese option wird die mit der besten Qualität heruntergeladen)"
-
-#: YouTubeDownloader-v2.6.py:43
-msgid "Download in very high quality (4096x2304), if available."
-msgstr "Video in sehr hoher Qualität (4096x2304) herunterladen, wenn möglich."
-
-#: YouTubeDownloader-v2.6.py:44
-msgid "Download as 3gp for mobile phones video (h263)."
-msgstr "Video als 3gp für Mobilfunktelefon herunterladen (h263)."
-
-#: YouTubeDownloader-v2.6.py:45
-msgid "Download video in WebM."
-msgstr "Video im WebM Format herunterladen."
-
-#: YouTubeDownloader-v2.6.py:46
-msgid "Only print download URL."
-msgstr "Downloadurl ausgeben."
-
-#: YouTubeDownloader-v2.6.py:47
-msgid "Open downloadurl in your default webbrowser. (senseless?!)"
-msgstr "Video Url im Webbrowser öffnen. (sinnentleert?)"
-
-#: YouTubeDownloader-v2.6.py:73
-msgid "mp4 - fmt-list"
-msgstr "mp4 - fmt-Liste"
-
-#: YouTubeDownloader-v2.6.py:74
-msgid "FMT = Resolution"
-msgstr "FMT = Auflösung"
-
-#: YouTubeDownloader-v2.6.py:84
-msgid "For more infos see fmt.xls"
-msgstr "Weitere Infos siehe fmt.xls"
-
-#: YouTubeDownloader-v2.6.py:88
-msgid "logging the world"
-msgstr "logging the world"
-
-#: YouTubeDownloader-v2.6.py:93
-msgid "We are on a Windows Operating System"
-msgstr "Wir befinden uns unter Windows."
-
-#: YouTubeDownloader-v2.6.py:95
-msgid "THIS IS LINUX!!! (or similar)"
-msgstr "THIS IS LINUX!!! (or similar)"
-
-#: YouTubeDownloader-v2.6.py:134
-msgid "No wx-widgets found."
-msgstr "Keine Wx-Widgets gefunden."
-
-#: modules\engine.py:11
-msgid "No wx-widgets found. (engine)"
-msgstr "Keine Wx-Widgets gefunden. (engine)"
-
-#: modules\engine.py:52
+#: modules/engine.py:48
 msgid " ~/Youtube/ directory and subdirectories created."
-msgstr "Verzeichniss ~/Youtube/ und Unterverzeichnisse erstellt."
+msgstr "~/Youtube/ Verzeichnis und Unterverzeichnisse erstellt."
 
-#: modules\engine.py:64
+#: modules/engine.py:62
 msgid "Download and parse Sourcecode..."
 msgstr "Quelltext herunterladen und verarbeiten...."
 
-#: modules\engine.py:66
+#: modules/engine.py:64
 msgid "...downloaded..."
 msgstr "...heruntergeladen..."
 
-#: modules\engine.py:118
+#: modules/engine.py:116
 msgid "Resolutions: %d (Best: %s)."
 msgstr "Auflösungen: %s"
 
-#: modules\engine.py:135
+#: modules/engine.py:133
 msgid "...parsed."
 msgstr "...verarbeitet"
 
-#: modules\engine.py:144
+#: modules/engine.py:142
 msgid "Use custom fmt=%s."
 msgstr "Benutzerdefiniertes fmt=%s."
 
-#: modules\engine.py:170
+#: modules/engine.py:167
 msgid "Video is not in HD(720p) available."
 msgstr "Video ist nicht in HD(720p) verfügbar."
 
-#: modules\engine.py:171
-#: modules\engine.py:187
+#: modules/engine.py:168
+#: modules/engine.py:184
 msgid "Video will be downloaded in default quality."
-msgstr "Video wird in Standardqualität heruntergeladen."
+msgstr "Video wird in standardqualität heruntergeladen."
 
-#: modules\engine.py:182
+#: modules/engine.py:179
 msgid "Video is not in Full-HD(1080p) available."
 msgstr "Video ist nicht in HD(1080p) verfügbar."
 
-#: modules\engine.py:183
+#: modules/engine.py:180
 msgid "Video will be downloaded in HD(720p)."
 msgstr "Video wird in HD(720p) heruntergeladen."
 
-#: modules\engine.py:186
+#: modules/engine.py:183
 msgid "Video is neither in Full-HD(1080p) nor in HD(720p) available."
 msgstr "Video ist weder in Full-HD(1080p) noch in HD(720p) verfügbar."
 
-#: modules\engine.py:211
+#: modules/engine.py:208
 msgid "Temp-files created."
 msgstr "Temporäre Dateien erstellt."
 
-#: modules\engine.py:215
+#: modules/engine.py:212
 msgid "Temp-file created."
 msgstr "Temporäre Datei erstellt."
 
-#: modules\engine.py:222
+#: modules/engine.py:219
 msgid "The Video can't opened in the browser and converted. (Use only w/--webbrowser or -c/--convert)."
 msgstr "Das Video kann nicht im Webbrowser geöffnet und konvertiert werde. (Nur w/--webbrowser oder -c/--convert benutzen)"
 
-#: modules\engine.py:231
+#: modules/engine.py:227
 msgid "Download completed."
 msgstr "Download abgeschlossen."
 
-#: modules\engine.py:235
+#: modules/engine.py:231
 msgid "Audiofile will be extracted."
 msgstr "Audio wird extrahiert."
 
-#: modules\engine.py:237
+#: modules/engine.py:233
 msgid "Converting..."
 msgstr "Konvertiere..."
 
-#: modules\engine.py:253
+#: modules/engine.py:249
 msgid "Converted!"
 msgstr "Konvertiert!"
 
-#: modules\engine.py:255
+#: modules/engine.py:251
 msgid "Only *.mp4 can be converted."
 msgstr "Nur *.mp4's können konvertiert werden."
 
-#: modules\engine.py:266
+#: modules/engine.py:262
 msgid "Video already exists."
 msgstr "Video bereits Vorhanden."
 
-#: modules\engine.py:267
+#: modules/engine.py:263
 msgid "Video will be moved to \"%s/%s_new%s%s\"."
 msgstr "Video wird nach \"%s/%s_new%s%s\" verschoben."
 
-#: modules\engine.py:277
+#: modules/engine.py:273
 msgid "\"%s\" moved to %s."
 msgstr "\"%s\" nach %s verschoben."
 
-#: modules\engine.py:284
+#: modules/engine.py:280
 msgid "Video in your requested filetype not available."
 msgstr "Video im angeforderten Format nicht vorhanden."
 
-#: modules\engine.py:285
+#: modules/engine.py:281
 msgid "Please use an other filetype."
 msgstr "Bitte ein anderes Format benutzen."
 
-#: modules\engine.py:286
+#: modules/engine.py:282
 msgid "e.g. use *.flv instead of *.mp4."
 msgstr "z.B. benutze *.flv anstatt *.mp4."
 
-#: modules\engine.py:288
+#: modules/engine.py:284
 msgid "ERROR: Format not available."
 msgstr "FEHLER: Format nicht verfügbar."
 
-#: modules\engine.py:302
+#: modules/engine.py:298
 msgid "Download comleted. :-)"
 msgstr "Download abgeschlossen. :-)"
 
-#: modules\gui.py:24
+#: modules/gui.py:24
 msgid "Starting Tagger"
 msgstr "Tagger wird gestartet."
 
-#: modules\gui.py:36
-#: modules\gui.py:128
-#: modules\gui.py:204
+#: modules/gui.py:34
+#: modules/gui.py:109
+#: modules/gui.py:175
+#: modules/language.py:42
+#: modules/language.py:53
 msgid "Close"
 msgstr "Schließen"
 
-#: modules\gui.py:38
+#: modules/gui.py:36
 msgid "AutoFill"
 msgstr "AutoFill"
 
-#: modules\gui.py:45
+#: modules/gui.py:40
 msgid "Titel:"
 msgstr "Titel:"
 
-#: modules\gui.py:46
+#: modules/gui.py:41
 msgid "Album:"
 msgstr "Album:"
 
-#: modules\gui.py:47
+#: modules/gui.py:42
 msgid "Interpret:"
 msgstr "Künstler"
 
-#: modules\gui.py:55
+#: modules/gui.py:50
 msgid "The titel of the song."
 msgstr "Der Titel des Liedes."
 
-#: modules\gui.py:56
+#: modules/gui.py:51
 msgid "The Album, on witch this song ws published."
 msgstr "Das Album, auf dem dieses Lied erschienen ist."
 
-#: modules\gui.py:57
+#: modules/gui.py:52
 msgid ""
 "The band/The singer/The DJ who \n"
 "has published this Song on a album."
@@ -268,63 +165,192 @@ msgstr ""
 "Die Band/Der Sänger/Der DJ der \n"
 "dieses Lied veröffentlicht hat."
 
-#: modules\gui.py:80
+#: modules/gui.py:70
 msgid "Set id3-tag"
 msgstr "id3-tag wird gesetzt."
 
-#: modules\gui.py:124
-#: modules\gui.py:194
+#: modules/gui.py:105
+#: modules/gui.py:165
+#: modules/language.py:50
 msgid "Advanced"
 msgstr "Erweitert"
 
-#: modules\gui.py:130
+#: modules/gui.py:111
+#: modules/language.py:43
 msgid "Check YouTube-Urls."
 msgstr "YouTube-Urls Überprüfen."
 
-#: modules\gui.py:131
+#: modules/gui.py:112
+#: modules/language.py:44
 msgid "More resolutions"
 msgstr "Mehr Auflösungen"
 
-#: modules\gui.py:133
+#: modules/gui.py:114
+#: modules/language.py:45
 msgid "Activate mp3-Tagger. (BETA)"
 msgstr "mp3-Tagger aktiveren. (BETA)"
 
-#: modules\gui.py:135
+#: modules/gui.py:116
+#: modules/language.py:46
 msgid "Enable \"Comic Sans MS\" as Font"
 msgstr "\"Comic Sans MS\" als Schriftart aktiveren. "
 
-#: modules\gui.py:170
+#: modules/gui.py:147
+#: modules/language.py:48
 msgid "Youtube Urls (seperated with spaces):"
 msgstr "YouTube Urls (mit Leerzeichen getrennt):"
 
-#: modules\gui.py:193
+#: modules/gui.py:164
+#: modules/language.py:49
 msgid "Convert to mp3"
 msgstr "Zu mp3 konvertieren"
 
-#: modules\gui.py:198
+#: modules/gui.py:169
+#: modules/language.py:51
 msgid "Download"
 msgstr "Herunterladen"
 
-#: modules\gui.py:201
+#: modules/gui.py:172
+#: modules/language.py:52
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: modules\gui.py:288
+#: modules/gui.py:267
+msgid "Could not find a correct config file."
+msgstr "Keine korrekte Konfigurationsdatei gefunden."
+
+#: modules/gui.py:269
+msgid "Some options in the config file are incorrect."
+msgstr "Ein paar Optionen in der Konfigurationsdatei sind nicht korrekt."
+
+#: modules/gui.py:271
+msgid "Unexpected error by reading the config file."
+msgstr "Unerwarteter Fehler beim einlesen der Konfigurationsdatei. "
+
+#: modules/gui.py:289
 msgid "Please enter YouTube-Url(s) in the textbox."
 msgstr "Bitte YouTube-Urls(s) in die Textbox einfügen."
 
-#: modules\log.py:14
+#: modules/gui.py:392
+msgid "One or more Urls are incorrect."
+msgstr "Eine oder mehr Urls sind fehlerhaft."
+
+#: modules/log.py:14
 msgid "%s-v%s started"
 msgstr "%s-v%s gestartet"
 
-#: modules\log.py:18
+#: modules/log.py:17
 msgid "%s %s"
 msgstr "%s %s"
 
-#: modules\log.py:21
+#: modules/log.py:20
 msgid "%s ERROR: %s"
 msgstr "%s FEHLER: %s"
 
+#: pYtLoader.py:27
+msgid "This is a easy program to download YouTube videos and extract the audio to mp3. (with shell or gui) (for mp3 lame and faad2 is required)"
+msgstr "Mit diesem Programm kann man ganz einfach (entweder per gui oder shell) Videos von YouTube herunterladen und den Audiostream zu mp3 extrahieren lassen (lame und faad2 benötigt)"
+
+#: pYtLoader.py:28
+msgid "This program is biodegradable."
+msgstr "Dieses Programm ist Biologisch abbaubar."
+
+#: pYtLoader.py:30
+msgid ""
+"Example for a fullHD-download and mp3 conversion:\n"
+"'./pYtLoader.py -c --fullhd http://www.youtube.com/watch?v=uxk4hIX3Kn4'."
+msgstr ""
+"Beispiel für fullHD-Download und mp3-konvertierung:\n"
+"'./pYtLoader.py -c --fullhd http://www.youtube.com/watch?v=uxk4hIX3Kn4'."
+
+#: pYtLoader.py:30
+msgid "Normal options"
+msgstr "Normale Optionen"
+
+#: pYtLoader.py:31
+msgid "Options, for non normal people."
+msgstr "Optionen, die ein normaler Mensch nicht braucht."
+
+#: pYtLoader.py:31
+msgid "advanced options"
+msgstr "Erweiterte Optionen"
+
+#: pYtLoader.py:32
+msgid "Convert video to (can be used only with mp4)."
+msgstr "Video als mp3 konvertieren (kann nur mit mp4 verwendet werden)."
+
+#: pYtLoader.py:33
+msgid "Download in high quality (720p), if available."
+msgstr "Video in hoher Qualität (720p) herunterladen, wenn verfügbar."
+
+#: pYtLoader.py:34
+msgid "Download in high quality (1080p), if available."
+msgstr "Video in hoher Qualität (1080p) herunterladen, wenn verfügbar."
+
+#: pYtLoader.py:35
+msgid "Download as 3gp for mobile phones video (MPEG-4)."
+msgstr "Video als 3gp für Mobilfunktelefone herunterladen (MPEG-4)."
+
+#: pYtLoader.py:36
+msgid "Download video as flv."
+msgstr "Video als flv herunterladen."
+
+#: pYtLoader.py:38
+msgid "Download video in custom quality (-f 0 to show the fmt list; Without this option the best quality will be downloaded.)"
+msgstr "Video in benutzerdefinierter Qualität herunterladen (-f 0 um eine fmt Liste anzuzeigen; Ohne diese Option wird mit der besten Qualität heruntergeladen)"
+
+#: pYtLoader.py:39
+msgid "Download in very high quality (4096x2304), if available."
+msgstr "Video in sehr hoher Qualität (4096x2304) herunterladen, wenn möglich."
+
+#: pYtLoader.py:40
+msgid "Download as 3gp for mobile phones video (h263)."
+msgstr "Video als 3gp für Mobilfunktelefon herunterladen (h263)."
+
+#: pYtLoader.py:41
+msgid "Download video in WebM."
+msgstr "Video im WebM Format herunterladen."
+
+#: pYtLoader.py:42
+msgid "Only print download URL."
+msgstr "Downloadurl ausgeben."
+
+#: pYtLoader.py:43
+msgid "Open downloadurl in your default webbrowser. (senseless?!)"
+msgstr "Video Url im Webbrowser öffnen. (sinnentleert?)"
+
+#: pYtLoader.py:69
+msgid "mp4 - fmt-list"
+msgstr "mp4 - fmt-Liste"
+
+#: pYtLoader.py:70
+msgid "FMT = Resolution"
+msgstr "FMT = Auflösung"
+
+#: pYtLoader.py:80
+msgid "For more infos see fmt.xls"
+msgstr "Weitere Infos siehe fmt.xls"
+
+#: pYtLoader.py:88
+msgid "We are on a Windows operating system."
+msgstr "Wir befinden uns auf einem Windows Betriebssystem."
+
+#: pYtLoader.py:90
+msgid "We are on a Linux (or similar) operating system."
+msgstr "Wir befinden uns auf einem Linux (oder ähnlichem) Betriebssystem,"
+
+#: pYtLoader.py:131
+msgid "No wx-widgets found. Try to use --help for cmd help."
+msgstr "Keine wx-widgets gefunden. Versuche --help für die Kommandozeilenhilfe."
+
+#~ msgid "logging the world"
+#~ msgstr "logging the world"
+#~ msgid "THIS IS LINUX!!! (or similar)"
+#~ msgstr "THIS IS LINUX!!! (or similar)"
+#~ msgid "No wx-widgets found."
+#~ msgstr "Keine Wx-Widgets gefunden."
+#~ msgid "No wx-widgets found. (engine)"
+#~ msgstr "Keine Wx-Widgets gefunden. (engine)"
 #~ msgid ""
 #~ "Download video NOT as 480x270 mp4 (-f 0 to see a list of available fmt; "
 #~ "You can also use your own fmt; To download normal as 480x270 mp4, leave "
@@ -333,12 +359,8 @@ msgstr "%s FEHLER: %s"
 #~ "Video NICHT in 480x270 mp4 herunterladen (-f 0 um liste mit den möglichen "
 #~ "FMT anzuzeigen; Es können auch benutzerdefinierte fmts verwendet werden; "
 #~ "Um normal in 480x270 herunterzuladen, einfach weglassen)."
-
 #~ msgid "'%s' is a YouTubeUrl."
 #~ msgstr "'%s' ist eine YouTubeUrl."
-
 #~ msgid "'%s' is NOT a YouTubeUrl."
 #~ msgstr "'%s' ist KEINE YouTubeUrl."
 
-#~ msgid "One or more Urls are incorrect."
-#~ msgstr "Eine oder mehr Urls sind fehlerhaft."
