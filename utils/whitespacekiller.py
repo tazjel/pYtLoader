@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-## Programm to clean whitespaces from programm code by XXLTomate ##
+## Programm to clean whitespaces from programm code - by XXLTomate ##
 
 import sys, os
 
