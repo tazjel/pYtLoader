@@ -65,7 +65,7 @@ class Youtube(threading.Thread):
 
 			for line in h.readlines():
 				#Die Linie mit der javascript variable "PLAYER_CONFIG" in eine Variable schreiben
-				if line.find("'PLAYER_CONFIG':") != -1:
+				if line.find("yt.playerConfig = {") != -1:
 					swfArgs = line
 				#Den Titel  finden und aus dem Quelltext 'extrahieren'
 				if line.find("<meta name=\"title\" content=\"") != -1:
@@ -113,7 +113,7 @@ class Youtube(threading.Thread):
 				videoInfo.append(videoInfoSubArray)
 				i = i +1
 
-			modules.log().info(_("Resolutions: %d (Best: %s).") %(rescount, videoInfo[0][1]))
+			modules.log().info(_("Resolutions: %d (Best: %s)." %(rescount, videoInfo[0][1])))
 
 			isHDAvailable = False
 			isFullHDAvailable = False
